@@ -13,7 +13,7 @@ import CoreML
 class YOLO {
     public static let inputWidth = 416//416//1088
     public static let inputHeight = 416//416//1088
-    public static let maxBoundingBoxes = 10
+    public static let maxBoundingBoxes = 3
     
     // Tweak these values to get more or fewer predictions.
     let confidenceThreshold: Float = 0.3//0.15
