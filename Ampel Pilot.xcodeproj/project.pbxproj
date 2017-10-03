@@ -1,0 +1,563 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A35F9F2D1F8378DA00208042 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35F9F2C1F8378DA00208042 /* AppDelegate.swift */; };
+		A35F9F2F1F8378DA00208042 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35F9F2E1F8378DA00208042 /* ViewController.swift */; };
+		A35F9F321F8378DA00208042 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A35F9F301F8378DA00208042 /* Main.storyboard */; };
+		A35F9F341F8378DB00208042 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A35F9F331F8378DB00208042 /* Assets.xcassets */; };
+		A35F9F371F8378DB00208042 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A35F9F351F8378DB00208042 /* LaunchScreen.storyboard */; };
+		A35F9F421F8378DB00208042 /* Ampel_PilotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35F9F411F8378DB00208042 /* Ampel_PilotTests.swift */; };
+		A35F9F4D1F8378DB00208042 /* Ampel_PilotUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35F9F4C1F8378DB00208042 /* Ampel_PilotUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A35F9F3E1F8378DB00208042 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A35F9F211F8378DA00208042 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A35F9F281F8378DA00208042;
+			remoteInfo = "Ampel Pilot";
+		};
+		A35F9F491F8378DB00208042 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A35F9F211F8378DA00208042 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A35F9F281F8378DA00208042;
+			remoteInfo = "Ampel Pilot";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A35F9F291F8378DA00208042 /* Ampel Pilot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ampel Pilot.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A35F9F2C1F8378DA00208042 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A35F9F2E1F8378DA00208042 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A35F9F311F8378DA00208042 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A35F9F331F8378DB00208042 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A35F9F361F8378DB00208042 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A35F9F381F8378DB00208042 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A35F9F3D1F8378DB00208042 /* Ampel PilotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Ampel PilotTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A35F9F411F8378DB00208042 /* Ampel_PilotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ampel_PilotTests.swift; sourceTree = "<group>"; };
+		A35F9F431F8378DB00208042 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A35F9F481F8378DB00208042 /* Ampel PilotUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Ampel PilotUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A35F9F4C1F8378DB00208042 /* Ampel_PilotUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ampel_PilotUITests.swift; sourceTree = "<group>"; };
+		A35F9F4E1F8378DB00208042 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A35F9F261F8378DA00208042 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A35F9F3A1F8378DB00208042 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A35F9F451F8378DB00208042 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A35F9F201F8378DA00208042 = {
+			isa = PBXGroup;
+			children = (
+				A35F9F2B1F8378DA00208042 /* Ampel Pilot */,
+				A35F9F401F8378DB00208042 /* Ampel PilotTests */,
+				A35F9F4B1F8378DB00208042 /* Ampel PilotUITests */,
+				A35F9F2A1F8378DA00208042 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A35F9F2A1F8378DA00208042 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A35F9F291F8378DA00208042 /* Ampel Pilot.app */,
+				A35F9F3D1F8378DB00208042 /* Ampel PilotTests.xctest */,
+				A35F9F481F8378DB00208042 /* Ampel PilotUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A35F9F2B1F8378DA00208042 /* Ampel Pilot */ = {
+			isa = PBXGroup;
+			children = (
+				A35F9F2C1F8378DA00208042 /* AppDelegate.swift */,
+				A35F9F2E1F8378DA00208042 /* ViewController.swift */,
+				A35F9F301F8378DA00208042 /* Main.storyboard */,
+				A35F9F331F8378DB00208042 /* Assets.xcassets */,
+				A35F9F351F8378DB00208042 /* LaunchScreen.storyboard */,
+				A35F9F381F8378DB00208042 /* Info.plist */,
+			);
+			path = "Ampel Pilot";
+			sourceTree = "<group>";
+		};
+		A35F9F401F8378DB00208042 /* Ampel PilotTests */ = {
+			isa = PBXGroup;
+			children = (
+				A35F9F411F8378DB00208042 /* Ampel_PilotTests.swift */,
+				A35F9F431F8378DB00208042 /* Info.plist */,
+			);
+			path = "Ampel PilotTests";
+			sourceTree = "<group>";
+		};
+		A35F9F4B1F8378DB00208042 /* Ampel PilotUITests */ = {
+			isa = PBXGroup;
+			children = (
+				A35F9F4C1F8378DB00208042 /* Ampel_PilotUITests.swift */,
+				A35F9F4E1F8378DB00208042 /* Info.plist */,
+			);
+			path = "Ampel PilotUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A35F9F281F8378DA00208042 /* Ampel Pilot */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A35F9F511F8378DB00208042 /* Build configuration list for PBXNativeTarget "Ampel Pilot" */;
+			buildPhases = (
+				A35F9F251F8378DA00208042 /* Sources */,
+				A35F9F261F8378DA00208042 /* Frameworks */,
+				A35F9F271F8378DA00208042 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Ampel Pilot";
+			productName = "Ampel Pilot";
+			productReference = A35F9F291F8378DA00208042 /* Ampel Pilot.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A35F9F3C1F8378DB00208042 /* Ampel PilotTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A35F9F541F8378DB00208042 /* Build configuration list for PBXNativeTarget "Ampel PilotTests" */;
+			buildPhases = (
+				A35F9F391F8378DB00208042 /* Sources */,
+				A35F9F3A1F8378DB00208042 /* Frameworks */,
+				A35F9F3B1F8378DB00208042 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A35F9F3F1F8378DB00208042 /* PBXTargetDependency */,
+			);
+			name = "Ampel PilotTests";
+			productName = "Ampel PilotTests";
+			productReference = A35F9F3D1F8378DB00208042 /* Ampel PilotTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A35F9F471F8378DB00208042 /* Ampel PilotUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A35F9F571F8378DB00208042 /* Build configuration list for PBXNativeTarget "Ampel PilotUITests" */;
+			buildPhases = (
+				A35F9F441F8378DB00208042 /* Sources */,
+				A35F9F451F8378DB00208042 /* Frameworks */,
+				A35F9F461F8378DB00208042 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A35F9F4A1F8378DB00208042 /* PBXTargetDependency */,
+			);
+			name = "Ampel PilotUITests";
+			productName = "Ampel PilotUITests";
+			productReference = A35F9F481F8378DB00208042 /* Ampel PilotUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A35F9F211F8378DA00208042 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0900;
+				LastUpgradeCheck = 0900;
+				ORGANIZATIONNAME = "Patrick Valenta";
+				TargetAttributes = {
+					A35F9F281F8378DA00208042 = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+					};
+					A35F9F3C1F8378DB00208042 = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = A35F9F281F8378DA00208042;
+					};
+					A35F9F471F8378DB00208042 = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = A35F9F281F8378DA00208042;
+					};
+				};
+			};
+			buildConfigurationList = A35F9F241F8378DA00208042 /* Build configuration list for PBXProject "Ampel Pilot" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A35F9F201F8378DA00208042;
+			productRefGroup = A35F9F2A1F8378DA00208042 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A35F9F281F8378DA00208042 /* Ampel Pilot */,
+				A35F9F3C1F8378DB00208042 /* Ampel PilotTests */,
+				A35F9F471F8378DB00208042 /* Ampel PilotUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A35F9F271F8378DA00208042 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A35F9F371F8378DB00208042 /* LaunchScreen.storyboard in Resources */,
+				A35F9F341F8378DB00208042 /* Assets.xcassets in Resources */,
+				A35F9F321F8378DA00208042 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A35F9F3B1F8378DB00208042 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A35F9F461F8378DB00208042 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A35F9F251F8378DA00208042 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A35F9F2F1F8378DA00208042 /* ViewController.swift in Sources */,
+				A35F9F2D1F8378DA00208042 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A35F9F391F8378DB00208042 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A35F9F421F8378DB00208042 /* Ampel_PilotTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A35F9F441F8378DB00208042 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A35F9F4D1F8378DB00208042 /* Ampel_PilotUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A35F9F3F1F8378DB00208042 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A35F9F281F8378DA00208042 /* Ampel Pilot */;
+			targetProxy = A35F9F3E1F8378DB00208042 /* PBXContainerItemProxy */;
+		};
+		A35F9F4A1F8378DB00208042 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A35F9F281F8378DA00208042 /* Ampel Pilot */;
+			targetProxy = A35F9F491F8378DB00208042 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A35F9F301F8378DA00208042 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A35F9F311F8378DA00208042 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		A35F9F351F8378DB00208042 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A35F9F361F8378DB00208042 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A35F9F4F1F8378DB00208042 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A35F9F501F8378DB00208042 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A35F9F521F8378DB00208042 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P84Z6JD2F2;
+				INFOPLIST_FILE = "Ampel Pilot/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hsa.Ampel-Pilot";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A35F9F531F8378DB00208042 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P84Z6JD2F2;
+				INFOPLIST_FILE = "Ampel Pilot/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hsa.Ampel-Pilot";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		A35F9F551F8378DB00208042 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P84Z6JD2F2;
+				INFOPLIST_FILE = "Ampel PilotTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hsa.Ampel-PilotTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ampel Pilot.app/Ampel Pilot";
+			};
+			name = Debug;
+		};
+		A35F9F561F8378DB00208042 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P84Z6JD2F2;
+				INFOPLIST_FILE = "Ampel PilotTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hsa.Ampel-PilotTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ampel Pilot.app/Ampel Pilot";
+			};
+			name = Release;
+		};
+		A35F9F581F8378DB00208042 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P84Z6JD2F2;
+				INFOPLIST_FILE = "Ampel PilotUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hsa.Ampel-PilotUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Ampel Pilot";
+			};
+			name = Debug;
+		};
+		A35F9F591F8378DB00208042 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P84Z6JD2F2;
+				INFOPLIST_FILE = "Ampel PilotUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hsa.Ampel-PilotUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Ampel Pilot";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A35F9F241F8378DA00208042 /* Build configuration list for PBXProject "Ampel Pilot" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A35F9F4F1F8378DB00208042 /* Debug */,
+				A35F9F501F8378DB00208042 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A35F9F511F8378DB00208042 /* Build configuration list for PBXNativeTarget "Ampel Pilot" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A35F9F521F8378DB00208042 /* Debug */,
+				A35F9F531F8378DB00208042 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A35F9F541F8378DB00208042 /* Build configuration list for PBXNativeTarget "Ampel PilotTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A35F9F551F8378DB00208042 /* Debug */,
+				A35F9F561F8378DB00208042 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A35F9F571F8378DB00208042 /* Build configuration list for PBXNativeTarget "Ampel PilotUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A35F9F581F8378DB00208042 /* Debug */,
+				A35F9F591F8378DB00208042 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A35F9F211F8378DA00208042 /* Project object */;
+}
