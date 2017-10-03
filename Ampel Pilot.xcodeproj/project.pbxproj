@@ -14,6 +14,13 @@
 		A35F9F371F8378DB00208042 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A35F9F351F8378DB00208042 /* LaunchScreen.storyboard */; };
 		A35F9F421F8378DB00208042 /* Ampel_PilotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35F9F411F8378DB00208042 /* Ampel_PilotTests.swift */; };
 		A35F9F4D1F8378DB00208042 /* Ampel_PilotUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35F9F4C1F8378DB00208042 /* Ampel_PilotUITests.swift */; };
+		A35F9F5D1F837D3E00208042 /* CVPixelBuffer+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35F9F5C1F837D3E00208042 /* CVPixelBuffer+Helpers.swift */; };
+		A35F9F5F1F837D7300208042 /* UIImage+CVPixelBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35F9F5E1F837D7300208042 /* UIImage+CVPixelBuffer.swift */; };
+		A35F9F611F837D9300208042 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35F9F601F837D9300208042 /* Helpers.swift */; };
+		A35F9F631F837DB800208042 /* VideoCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35F9F621F837DB800208042 /* VideoCapture.swift */; };
+		A35F9F661F837DE000208042 /* YOLO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35F9F651F837DE000208042 /* YOLO.swift */; };
+		A35F9F681F837E0400208042 /* BoundingBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35F9F671F837E0400208042 /* BoundingBox.swift */; };
+		A35F9F6A1F837E2F00208042 /* AmpelPilot1_2.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = A35F9F691F837E2800208042 /* AmpelPilot1_2.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +54,13 @@
 		A35F9F481F8378DB00208042 /* Ampel PilotUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Ampel PilotUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A35F9F4C1F8378DB00208042 /* Ampel_PilotUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ampel_PilotUITests.swift; sourceTree = "<group>"; };
 		A35F9F4E1F8378DB00208042 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A35F9F5C1F837D3E00208042 /* CVPixelBuffer+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CVPixelBuffer+Helpers.swift"; sourceTree = "<group>"; };
+		A35F9F5E1F837D7300208042 /* UIImage+CVPixelBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+CVPixelBuffer.swift"; sourceTree = "<group>"; };
+		A35F9F601F837D9300208042 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		A35F9F621F837DB800208042 /* VideoCapture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCapture.swift; sourceTree = "<group>"; };
+		A35F9F651F837DE000208042 /* YOLO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YOLO.swift; sourceTree = "<group>"; };
+		A35F9F671F837E0400208042 /* BoundingBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoundingBox.swift; sourceTree = "<group>"; };
+		A35F9F691F837E2800208042 /* AmpelPilot1_2.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = AmpelPilot1_2.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +111,9 @@
 		A35F9F2B1F8378DA00208042 /* Ampel Pilot */ = {
 			isa = PBXGroup;
 			children = (
+				A35F9F641F837DD500208042 /* yolo */,
+				A35F9F5B1F837D1600208042 /* utils */,
+				A35F9F5A1F837D0C00208042 /* helpers */,
 				A35F9F2C1F8378DA00208042 /* AppDelegate.swift */,
 				A35F9F2E1F8378DA00208042 /* ViewController.swift */,
 				A35F9F301F8378DA00208042 /* Main.storyboard */,
@@ -123,6 +140,34 @@
 				A35F9F4E1F8378DB00208042 /* Info.plist */,
 			);
 			path = "Ampel PilotUITests";
+			sourceTree = "<group>";
+		};
+		A35F9F5A1F837D0C00208042 /* helpers */ = {
+			isa = PBXGroup;
+			children = (
+				A35F9F621F837DB800208042 /* VideoCapture.swift */,
+			);
+			path = helpers;
+			sourceTree = "<group>";
+		};
+		A35F9F5B1F837D1600208042 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				A35F9F5C1F837D3E00208042 /* CVPixelBuffer+Helpers.swift */,
+				A35F9F5E1F837D7300208042 /* UIImage+CVPixelBuffer.swift */,
+				A35F9F601F837D9300208042 /* Helpers.swift */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
+		A35F9F641F837DD500208042 /* yolo */ = {
+			isa = PBXGroup;
+			children = (
+				A35F9F651F837DE000208042 /* YOLO.swift */,
+				A35F9F671F837E0400208042 /* BoundingBox.swift */,
+				A35F9F691F837E2800208042 /* AmpelPilot1_2.mlmodel */,
+			);
+			path = yolo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,8 +304,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A35F9F5D1F837D3E00208042 /* CVPixelBuffer+Helpers.swift in Sources */,
 				A35F9F2F1F8378DA00208042 /* ViewController.swift in Sources */,
+				A35F9F6A1F837E2F00208042 /* AmpelPilot1_2.mlmodel in Sources */,
 				A35F9F2D1F8378DA00208042 /* AppDelegate.swift in Sources */,
+				A35F9F681F837E0400208042 /* BoundingBox.swift in Sources */,
+				A35F9F611F837D9300208042 /* Helpers.swift in Sources */,
+				A35F9F631F837DB800208042 /* VideoCapture.swift in Sources */,
+				A35F9F661F837DE000208042 /* YOLO.swift in Sources */,
+				A35F9F5F1F837D7300208042 /* UIImage+CVPixelBuffer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,7 +485,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hsa.Ampel-Pilot";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -448,7 +500,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hsa.Ampel-Pilot";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
