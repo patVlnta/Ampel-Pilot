@@ -18,6 +18,7 @@ class DetectionViewController: UIViewController {
     @IBOutlet weak var timeLabel: UILabel!
     
     let yolo = YOLO()
+    var lightPhaseManager: LightPhaseManager!
     
     var videoCapture: VideoCapture!
     var request: VNCoreMLRequest!
@@ -36,6 +37,7 @@ class DetectionViewController: UIViewController {
         super.viewDidLoad()
         
         timeLabel.text = ""
+        lightPhaseManager = LightPhaseManager(confidenceThreshold: 3, maxDetections: YOLO.maxBoundingBoxes, minIOU: 0.3)
         
         setUpBoundingBoxes()
         setUpVision()
@@ -133,11 +135,14 @@ class DetectionViewController: UIViewController {
             
             let boundingBoxes = yolo.computeBoundingBoxes(features: features)
             let elapsed = CACurrentMediaTime() - startTimes.remove(at: 0)
-            showOnMainThread(boundingBoxes, elapsed)
+            
+            lightPhaseManager.add(predictions: boundingBoxes)
+
+            showOnMainThread(boundingBoxes, elapsed, lightPhaseManager.determine())
         }
     }
     
-    func showOnMainThread(_ boundingBoxes: [YOLO.Prediction], _ elapsed: CFTimeInterval) {
+    func showOnMainThread(_ boundingBoxes: [YOLO.Prediction], _ elapsed: CFTimeInterval, _ phase: LightPhaseManager.Phase) {
         DispatchQueue.main.async {
             // For debugging, to make sure the resized CVPixelBuffer is correct.
             //var debugImage: CGImage?
@@ -147,7 +152,7 @@ class DetectionViewController: UIViewController {
             self.show(predictions: boundingBoxes)
             
             let fps = self.measureFPS()
-            self.timeLabel.text = String(format: "Elapsed %.5f seconds - %.2f FPS", elapsed, fps)
+            self.timeLabel.text = String(format: "Elapsed %.5f seconds - %.2f FPS, Phase -> \(phase.description())", elapsed, fps)
             
             self.semaphore.signal()
         }
