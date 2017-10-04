@@ -53,6 +53,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="resultsView" destination="Ce7-Li-NTk" id="eaX-2z-16n"/>
                         <outlet property="timeLabel" destination="UGh-bZ-CQP" id="AzR-Ev-La3"/>
                         <outlet property="videoPreview" destination="ntT-eB-72z" id="zuq-N9-zba"/>
                     </connections>

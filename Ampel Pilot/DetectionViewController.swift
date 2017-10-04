@@ -16,6 +16,7 @@ class DetectionViewController: UIViewController {
 
     @IBOutlet weak var videoPreview: UIView!
     @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var resultsView: UIView!
     
     let yolo = YOLO()
     var lightPhaseManager: LightPhaseManager!
@@ -37,7 +38,7 @@ class DetectionViewController: UIViewController {
         super.viewDidLoad()
         
         timeLabel.text = ""
-        lightPhaseManager = LightPhaseManager(confidenceThreshold: 3, maxDetections: YOLO.maxBoundingBoxes, minIOU: 0.3)
+        lightPhaseManager = LightPhaseManager(confidenceThreshold: 0, maxDetections: YOLO.maxBoundingBoxes, minIOU: 0.3)
         
         setUpBoundingBoxes()
         setUpVision()
@@ -150,6 +151,12 @@ class DetectionViewController: UIViewController {
             //self.debugImageView.image = UIImage(cgImage: debugImage!)
             
             self.show(predictions: boundingBoxes)
+            
+            switch phase {
+            case .red: self.resultsView.backgroundColor = UIColor.red.withAlphaComponent(0.5)
+            case .green: self.resultsView.backgroundColor = UIColor.green.withAlphaComponent(0.5)
+            case .none: self.resultsView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+            }
             
             let fps = self.measureFPS()
             self.timeLabel.text = String(format: "Elapsed %.5f seconds - %.2f FPS, Phase -> \(phase.description())", elapsed, fps)

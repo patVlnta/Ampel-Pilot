@@ -13,8 +13,8 @@ class LightPhaseManager {
     
     struct Detection: Comparable {
         var rect: CGRect
-        var confirmed: Int = 0
-        var detectedInCurrentFrame: Bool = false
+        var confirmed: Int
+        var detectedInCurrentFrame: Bool
         var phase: Phase
         
         mutating func confirm() {
@@ -105,7 +105,7 @@ class LightPhaseManager {
             return self.currentPhase
         }
         
-        // Get detection with the largest area, which is most likely the on closest on the frame
+        // Get detection with the largest area, which is most likely the closest on the frame
         if let max = detections.max() {
             self.currentPhase = max.phase
         }
