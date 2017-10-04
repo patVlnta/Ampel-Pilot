@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A35F9F2D1F8378DA00208042 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35F9F2C1F8378DA00208042 /* AppDelegate.swift */; };
-		A35F9F2F1F8378DA00208042 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35F9F2E1F8378DA00208042 /* ViewController.swift */; };
+		A35F9F2F1F8378DA00208042 /* DetectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35F9F2E1F8378DA00208042 /* DetectionViewController.swift */; };
 		A35F9F321F8378DA00208042 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A35F9F301F8378DA00208042 /* Main.storyboard */; };
 		A35F9F341F8378DB00208042 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A35F9F331F8378DB00208042 /* Assets.xcassets */; };
 		A35F9F371F8378DB00208042 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A35F9F351F8378DB00208042 /* LaunchScreen.storyboard */; };
@@ -43,7 +43,7 @@
 /* Begin PBXFileReference section */
 		A35F9F291F8378DA00208042 /* Ampel Pilot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ampel Pilot.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A35F9F2C1F8378DA00208042 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A35F9F2E1F8378DA00208042 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A35F9F2E1F8378DA00208042 /* DetectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectionViewController.swift; sourceTree = "<group>"; };
 		A35F9F311F8378DA00208042 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A35F9F331F8378DB00208042 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A35F9F361F8378DB00208042 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -115,7 +115,7 @@
 				A35F9F5B1F837D1600208042 /* utils */,
 				A35F9F5A1F837D0C00208042 /* helpers */,
 				A35F9F2C1F8378DA00208042 /* AppDelegate.swift */,
-				A35F9F2E1F8378DA00208042 /* ViewController.swift */,
+				A35F9F2E1F8378DA00208042 /* DetectionViewController.swift */,
 				A35F9F301F8378DA00208042 /* Main.storyboard */,
 				A35F9F331F8378DB00208042 /* Assets.xcassets */,
 				A35F9F351F8378DB00208042 /* LaunchScreen.storyboard */,
@@ -305,7 +305,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A35F9F5D1F837D3E00208042 /* CVPixelBuffer+Helpers.swift in Sources */,
-				A35F9F2F1F8378DA00208042 /* ViewController.swift in Sources */,
+				A35F9F2F1F8378DA00208042 /* DetectionViewController.swift in Sources */,
 				A35F9F6A1F837E2F00208042 /* AmpelPilot1_2.mlmodel in Sources */,
 				A35F9F2D1F8378DA00208042 /* AppDelegate.swift in Sources */,
 				A35F9F681F837E0400208042 /* BoundingBox.swift in Sources */,

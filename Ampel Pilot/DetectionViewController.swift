@@ -12,7 +12,7 @@ import AVFoundation
 import CoreMedia
 import VideoToolbox
 
-class ViewController: UIViewController {
+class DetectionViewController: UIViewController {
 
     @IBOutlet weak var videoPreview: UIView!
     @IBOutlet weak var timeLabel: UILabel!
@@ -201,7 +201,7 @@ class ViewController: UIViewController {
 
 }
 
-extension ViewController: VideoCaptureDelegate {
+extension DetectionViewController: VideoCaptureDelegate {
     func videoCapture(_ capture: VideoCapture, didCaptureVideoFrame pixelBuffer: CVPixelBuffer?, timestamp: CMTime) {
         // For debugging.
         //predict(image: UIImage(named: "dog416")!); return
