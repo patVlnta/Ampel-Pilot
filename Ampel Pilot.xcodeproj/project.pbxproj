@@ -22,6 +22,7 @@
 		A35F9F681F837E0400208042 /* BoundingBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35F9F671F837E0400208042 /* BoundingBox.swift */; };
 		A35F9F6A1F837E2F00208042 /* AmpelPilot1_2.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = A35F9F691F837E2800208042 /* AmpelPilot1_2.mlmodel */; };
 		A3B07EE31F84DC9000B791B5 /* LightPhaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B07EE21F84DC9000B791B5 /* LightPhaseManager.swift */; };
+		A3E8769A1F87B235006BEE74 /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E876991F87B235006BEE74 /* MotionManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		A35F9F671F837E0400208042 /* BoundingBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoundingBox.swift; sourceTree = "<group>"; };
 		A35F9F691F837E2800208042 /* AmpelPilot1_2.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = AmpelPilot1_2.mlmodel; sourceTree = "<group>"; };
 		A3B07EE21F84DC9000B791B5 /* LightPhaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightPhaseManager.swift; sourceTree = "<group>"; };
+		A3E876991F87B235006BEE74 /* MotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				A35F9F621F837DB800208042 /* VideoCapture.swift */,
+				A3E876991F87B235006BEE74 /* MotionManager.swift */,
 			);
 			path = helpers;
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 				A3B07EE31F84DC9000B791B5 /* LightPhaseManager.swift in Sources */,
 				A35F9F6A1F837E2F00208042 /* AmpelPilot1_2.mlmodel in Sources */,
 				A35F9F2D1F8378DA00208042 /* AppDelegate.swift in Sources */,
+				A3E8769A1F87B235006BEE74 /* MotionManager.swift in Sources */,
 				A35F9F681F837E0400208042 /* BoundingBox.swift in Sources */,
 				A35F9F611F837D9300208042 /* Helpers.swift in Sources */,
 				A35F9F631F837DB800208042 /* VideoCapture.swift in Sources */,

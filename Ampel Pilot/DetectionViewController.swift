@@ -10,6 +10,7 @@ import UIKit
 import Vision
 import AVFoundation
 import CoreMedia
+import CoreMotion
 import VideoToolbox
 
 class DetectionViewController: UIViewController {
@@ -17,11 +18,14 @@ class DetectionViewController: UIViewController {
     @IBOutlet weak var videoPreview: UIView!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var resultsView: UIView!
+    @IBOutlet weak var pauseScreen: UIVisualEffectView!
     
     let yolo = YOLO()
+    let motionManager = MotionManager()
     var lightPhaseManager: LightPhaseManager!
     
     var videoCapture: VideoCapture!
+    var devicePitchAcceptable = true
     var request: VNCoreMLRequest!
     var startTimes: [CFTimeInterval] = []
     
@@ -81,13 +85,24 @@ class DetectionViewController: UIViewController {
         
         timeLabel.text = ""
         lightPhaseManager = LightPhaseManager(confidenceThreshold: 0, maxDetections: YOLO.maxBoundingBoxes, minIOU: 0.3)
+        motionManager.delegate = self
         
         setUpBoundingBoxes()
-        setupView()
+        setupViews()
         setUpVision()
         setUpCamera()
         
         frameCapturingStartTime = CACurrentMediaTime()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        motionManager.start()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        motionManager.stop()
     }
     
     override func didReceiveMemoryWarning() {
@@ -107,7 +122,9 @@ class DetectionViewController: UIViewController {
     
     // MARK: - Initialization
     
-    func setupView() {
+    func setupViews() {
+        self.pauseScreen.isHidden = true
+        
         view.addSubview(zoomInButton)
         view.addSubview(zoomOutButton)
         
@@ -219,15 +236,7 @@ class DetectionViewController: UIViewController {
             //self.debugImageView.image = UIImage(cgImage: debugImage!)
             
             self.show(predictions: boundingBoxes)
-            
-            switch phase {
-            case .red: self.resultsView.backgroundColor = UIColor.red.withAlphaComponent(0.5)
-            case .green: self.resultsView.backgroundColor = UIColor.green.withAlphaComponent(0.5)
-            case .none: self.resultsView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-            }
-            
-            let fps = self.measureFPS()
-            self.timeLabel.text = String(format: "Zoom \(self.videoCapture.captureDevice.videoZoomFactor)x, %.2f FPS, Phase -> \(phase.description())", fps)
+            self.updateResultsLabel(phase)
             
             self.semaphore.signal()
         }
@@ -243,6 +252,17 @@ class DetectionViewController: UIViewController {
             frameCapturingStartTime = CACurrentMediaTime()
         }
         return currentFPSDelivered
+    }
+    
+    func updateResultsLabel(_ phase: LightPhaseManager.Phase) {
+        switch phase {
+        case .red: self.resultsView.backgroundColor = UIColor.red.withAlphaComponent(0.5)
+        case .green: self.resultsView.backgroundColor = UIColor.green.withAlphaComponent(0.5)
+        case .none: self.resultsView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        }
+        
+        let fps = self.measureFPS()
+        self.timeLabel.text = String(format: "Zoom \(self.videoCapture.captureDevice.videoZoomFactor)x, %.2f FPS, Phase -> \(phase.description())", fps)
     }
     
     func show(predictions: [YOLO.Prediction]) {
@@ -296,6 +316,34 @@ extension DetectionViewController: VideoCaptureDelegate {
                 //self.predict(pixelBuffer: pixelBuffer)
                 self.predictUsingVision(pixelBuffer: pixelBuffer)
             }
+        }
+    }
+    
+    func videoCaptureDidStart(_ capture: VideoCapture) {
+        setView(view: self.pauseScreen, hidden: true, duration: 0.15)
+        setView(view: self.zoomInButton, hidden: false, duration: 0.15)
+        setView(view: self.zoomOutButton, hidden: false, duration: 0.15)
+        
+        self.show(predictions: [])
+        self.updateResultsLabel(.none)
+    }
+    
+    func videoCaptureDidStop(_ capture: VideoCapture) {
+        setView(view: self.pauseScreen, hidden: false, duration: 0.15)
+        setView(view: self.zoomInButton, hidden: true, duration: 0.15)
+        setView(view: self.zoomOutButton, hidden: true, duration: 0.15)
+    }
+}
+
+extension DetectionViewController: MotionManagerDelegate {
+    func didUpdate(withMotion: CMDeviceMotion) {
+        let pitch = (180 / Double.pi * withMotion.attitude.pitch)/100
+        self.devicePitchAcceptable = pitch < 0.6 ? false : true
+        
+        if !self.devicePitchAcceptable && self.videoCapture.captureSession.isRunning {
+            self.videoCapture.stop()
+        } else if self.devicePitchAcceptable && !self.videoCapture.captureSession.isRunning {
+            self.videoCapture.start()
         }
     }
 }

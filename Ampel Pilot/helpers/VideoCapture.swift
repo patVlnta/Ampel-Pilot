@@ -12,6 +12,9 @@ import CoreVideo
 
 public protocol VideoCaptureDelegate: class {
     func videoCapture(_ capture: VideoCapture, didCaptureVideoFrame: CVPixelBuffer?, timestamp: CMTime)
+    
+    func videoCaptureDidStop(_ capture: VideoCapture)
+    func videoCaptureDidStart(_ capture: VideoCapture)
 }
 
 public class VideoCapture: NSObject {
@@ -83,12 +86,14 @@ public class VideoCapture: NSObject {
     public func start() {
         if !captureSession.isRunning {
             captureSession.startRunning()
+            self.delegate?.videoCaptureDidStart(self)
         }
     }
     
     public func stop() {
         if captureSession.isRunning {
             captureSession.stopRunning()
+            self.delegate?.videoCaptureDidStop(self)
         }
     }
     

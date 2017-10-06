@@ -155,3 +155,8 @@ public func softmax(_ x: [Float]) -> [Float] {
     return x
 }
 
+public func setView(view: UIView, hidden: Bool, duration: TimeInterval) {
+    UIView.transition(with: view, duration: duration, options: .transitionCrossDissolve, animations: {
+        view.isHidden = hidden
+    }, completion: nil)
+}

@@ -39,20 +39,45 @@
                                     <constraint firstAttribute="bottom" secondItem="UGh-bZ-CQP" secondAttribute="bottom" constant="10" id="WAU-eq-41a"/>
                                 </constraints>
                             </view>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y3D-2k-3I4" userLabel="Pause Screen">
+                                <rect key="frame" x="0.0" y="-1" width="375" height="668"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="6SJ-Xs-eiY">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="668"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pausiert" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aQs-X4-oie">
+                                            <rect key="frame" x="135.5" y="318.5" width="105.5" height="31.5"/>
+                                            <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="26"/>
+                                            <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="aQs-X4-oie" firstAttribute="centerY" secondItem="6SJ-Xs-eiY" secondAttribute="centerY" id="1mC-vV-RPH"/>
+                                        <constraint firstItem="aQs-X4-oie" firstAttribute="centerX" secondItem="6SJ-Xs-eiY" secondAttribute="centerX" id="Xw9-E7-KDf"/>
+                                    </constraints>
+                                </view>
+                                <blurEffect style="dark"/>
+                            </visualEffectView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ntT-eB-72z" secondAttribute="bottom" id="9bn-xc-B46"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Ce7-Li-NTk" secondAttribute="bottom" id="E7E-uY-UJ7"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="ntT-eB-72z" secondAttribute="top" id="FM1-fP-VcQ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Y3D-2k-3I4" secondAttribute="bottom" id="G93-e0-1Ed"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ntT-eB-72z" secondAttribute="trailing" id="eyP-gP-2Pc"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="Y3D-2k-3I4" secondAttribute="top" constant="21" id="gQw-bg-1c2"/>
                             <constraint firstItem="Ce7-Li-NTk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="nrP-TT-hT1"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Y3D-2k-3I4" secondAttribute="trailing" id="rPp-Kc-U7h"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Ce7-Li-NTk" secondAttribute="trailing" id="v0T-yX-2jO"/>
+                            <constraint firstItem="Y3D-2k-3I4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="vZH-EN-h0a"/>
                             <constraint firstItem="ntT-eB-72z" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="w6f-fa-gAv"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="pauseScreen" destination="Y3D-2k-3I4" id="y53-Hg-uZv"/>
                         <outlet property="resultsView" destination="Ce7-Li-NTk" id="eaX-2z-16n"/>
                         <outlet property="timeLabel" destination="UGh-bZ-CQP" id="AzR-Ev-La3"/>
                         <outlet property="videoPreview" destination="ntT-eB-72z" id="zuq-N9-zba"/>
