@@ -24,6 +24,7 @@ public class VideoCapture: NSObject {
     let queue = DispatchQueue(label: "net.machinethink.camera-queue")
     
     var lastTimestamp = CMTime()
+    var captureDevice: AVCaptureDevice!
     
     public func setUp(sessionPreset: AVCaptureSession.Preset = .medium,
                       completion: @escaping (Bool) -> Void) {
@@ -43,6 +44,8 @@ public class VideoCapture: NSObject {
             print("Error: no video devices available")
             return false
         }
+        
+        self.captureDevice = captureDevice
         
         guard let videoInput = try? AVCaptureDeviceInput(device: captureDevice) else {
             print("Error: could not create AVCaptureDeviceInput")
@@ -86,6 +89,39 @@ public class VideoCapture: NSObject {
     public func stop() {
         if captureSession.isRunning {
             captureSession.stopRunning()
+        }
+    }
+    
+    public func zoomIn() {
+        self.setZoom(byValue: 0.5)
+    }
+    
+    public func zoomOut() {
+        self.setZoom(byValue: -0.5)
+    }
+    
+    private func setZoom(byValue: CGFloat) {
+        
+        if self.captureDevice.isRampingVideoZoom {
+            return
+        }
+        
+        do {
+            try self.captureDevice.lockForConfiguration()
+            var newZoom = self.captureDevice.videoZoomFactor + byValue
+            
+            if newZoom < self.captureDevice.minAvailableVideoZoomFactor {
+                newZoom = self.captureDevice.minAvailableVideoZoomFactor
+            }
+            
+            if newZoom > self.captureDevice.maxAvailableVideoZoomFactor {
+                newZoom = self.captureDevice.maxAvailableVideoZoomFactor
+            }
+            
+            self.captureDevice.ramp(toVideoZoomFactor: newZoom, withRate: 2.0)
+            self.captureDevice.unlockForConfiguration()
+        } catch {
+            print("[VideoCapture]: Error locking configuration")
         }
     }
 }

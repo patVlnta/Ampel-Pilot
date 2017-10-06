@@ -34,6 +34,48 @@ class DetectionViewController: UIViewController {
     var frameCapturingStartTime = CACurrentMediaTime()
     let semaphore = DispatchSemaphore(value: 2)
     
+    lazy var zoomInButton: UIView = {
+        let btn = UIButton(type: .system)
+        btn.layer.cornerRadius = 5
+        btn.layer.masksToBounds = true
+        btn.backgroundColor = .white
+        btn.tintColor = .black
+        
+        btn.layer.borderColor = UIColor.black.cgColor
+        btn.layer.borderWidth = 0.4
+        
+        btn.setImage(#imageLiteral(resourceName: "plus_filled"), for: .normal)
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        
+        btn.addTarget(self, action: #selector(zoomInBtnPressed), for: .touchUpInside)
+        btn.isEnabled = true
+        btn.alpha = 1.0
+        
+        return btn
+        
+    }()
+    
+    lazy var zoomOutButton: UIView = {
+        let btn = UIButton(type: .system)
+        btn.layer.cornerRadius = 5
+        btn.layer.masksToBounds = true
+        btn.backgroundColor = .white
+        btn.tintColor = .black
+        
+        btn.layer.borderColor = UIColor.black.cgColor
+        btn.layer.borderWidth = 0.4
+        
+        btn.setImage(#imageLiteral(resourceName: "minus_filled"), for: .normal)
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        
+        btn.addTarget(self, action: #selector(zoomOutBtnPressed), for: .touchUpInside)
+        btn.isEnabled = true
+        btn.alpha = 1.0
+        
+        return btn
+        
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -41,6 +83,7 @@ class DetectionViewController: UIViewController {
         lightPhaseManager = LightPhaseManager(confidenceThreshold: 0, maxDetections: YOLO.maxBoundingBoxes, minIOU: 0.3)
         
         setUpBoundingBoxes()
+        setupView()
         setUpVision()
         setUpCamera()
         
@@ -52,7 +95,32 @@ class DetectionViewController: UIViewController {
         print(#function)
     }
     
+    // MARK: - UI Interactions
+    
+    @objc func zoomInBtnPressed() {
+        self.videoCapture.zoomIn()
+    }
+    
+    @objc func zoomOutBtnPressed() {
+        self.videoCapture.zoomOut()
+    }
+    
     // MARK: - Initialization
+    
+    func setupView() {
+        view.addSubview(zoomInButton)
+        view.addSubview(zoomOutButton)
+        
+        zoomOutButton.bottomAnchor.constraint(equalTo: resultsView.topAnchor, constant: -20).isActive = true
+        zoomOutButton.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -12).isActive = true
+        zoomOutButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        zoomOutButton.widthAnchor.constraint(equalTo: zoomOutButton.heightAnchor, constant: 0).isActive = true
+        
+        zoomInButton.bottomAnchor.constraint(equalTo: zoomOutButton.topAnchor, constant: -12).isActive = true
+        zoomInButton.rightAnchor.constraint(equalTo: zoomOutButton.rightAnchor, constant: 0).isActive = true
+        zoomInButton.heightAnchor.constraint(equalTo: zoomOutButton.heightAnchor, constant: 0).isActive = true
+        zoomInButton.widthAnchor.constraint(equalTo: zoomOutButton.widthAnchor, constant: 0).isActive = true
+    }
     
     func setUpBoundingBoxes() {
         for _ in 0..<YOLO.maxBoundingBoxes {
@@ -159,7 +227,7 @@ class DetectionViewController: UIViewController {
             }
             
             let fps = self.measureFPS()
-            self.timeLabel.text = String(format: "Elapsed %.5f seconds - %.2f FPS, Phase -> \(phase.description())", elapsed, fps)
+            self.timeLabel.text = String(format: "Zoom \(self.videoCapture.captureDevice.videoZoomFactor)x, %.2f FPS, Phase -> \(phase.description())", fps)
             
             self.semaphore.signal()
         }
