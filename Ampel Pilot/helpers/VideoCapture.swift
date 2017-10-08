@@ -143,7 +143,7 @@ extension VideoCapture: AVCaptureVideoDataOutputSampleBufferDelegate {
         if deltaTime >= CMTimeMake(1, Int32(fps)) {
             lastTimestamp = timestamp
             let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)
-            delegate?.videoCapture(self, didCaptureVideoFrame: imageBuffer, timestamp: timestamp)
+            delegate?.videoCapture(self, didCaptureVideoFrame: self.mani(buffer: imageBuffer!), timestamp: timestamp)
         }
     }
     
@@ -154,7 +154,7 @@ extension VideoCapture: AVCaptureVideoDataOutputSampleBufferDelegate {
         if let colorMatrixFilter = CIFilter(name: "CIColorMatrix") {
             let r:CGFloat = 1
             let g:CGFloat = 1
-            let b:CGFloat = 1
+            let b:CGFloat = 0
             let a:CGFloat = 1
             
             colorMatrixFilter.setDefaults()

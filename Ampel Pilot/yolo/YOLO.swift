@@ -25,7 +25,7 @@ class YOLO {
         let rect: CGRect
     }
     
-    let model = AmpelPilot1_2()//AmpelPilot1_416()//AmpelPilot1()
+    let model = AmpelPilot1_2rg()//AmpelPilot1_416()//AmpelPilot1()
     
     public init() { }
     
