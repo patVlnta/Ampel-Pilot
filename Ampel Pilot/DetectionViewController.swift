@@ -84,7 +84,7 @@ class DetectionViewController: UIViewController {
         super.viewDidLoad()
         
         timeLabel.text = ""
-        lightPhaseManager = LightPhaseManager(confidenceThreshold: 0, maxDetections: YOLO.maxBoundingBoxes, minIOU: 0.3)
+        lightPhaseManager = LightPhaseManager(confidenceThreshold: 0, maxDetections: YOLO.maxBoundingBoxes, minIOU: 0.3, feedback: true)
         motionManager.delegate = self
         
         setUpBoundingBoxes()
@@ -325,6 +325,7 @@ extension DetectionViewController: VideoCaptureDelegate {
         setView(view: self.zoomOutButton, hidden: false, duration: 0.15)
         
         self.show(predictions: [])
+        self.lightPhaseManager.currentPhase = LightPhaseManager.Phase.none
         self.updateResultsLabel(.none)
     }
     

@@ -55,14 +55,33 @@ class LightPhaseManager {
     
     var maxDetections: Int!
     
+    var feedback: Bool! {
+        didSet {
+            if !feedback {
+                self.feedbackManager.stop()
+            }
+        }
+    }
+    
+    var feedbackManager: FeedbackManager!
+    
     var detections: [Detection]!
     
-    var currentPhase: Phase!
+    var currentPhase: Phase! {
+        didSet {
+            if oldValue != currentPhase {
+                self.onPhaseChanged(currentPhase)
+            }
+        }
+    }
     
-    init(confidenceThreshold: Int, maxDetections: Int, minIOU: Float) {
+    init(confidenceThreshold: Int, maxDetections: Int, minIOU: Float, feedback: Bool) {
+        self.feedbackManager = FeedbackManager()
+        
         self.confidenceThreshold = confidenceThreshold
         self.minIOU = minIOU
         self.maxDetections = maxDetections
+        self.feedback = feedback
         
         self.detections = [Detection]()
         self.currentPhase = .none
@@ -125,6 +144,20 @@ class LightPhaseManager {
         }
         
         return nil
+    }
+    
+    private func onPhaseChanged(_ newPhase: Phase) {
+        if !feedback {
+            return
+        }
+        
+        self.feedbackManager.stop()
+        
+        switch newPhase {
+        case .red: self.feedbackManager.start(withFeedbackType: .warning, text: "Es ist rot", withInterval: 1.4)
+        case .green: self.feedbackManager.start(withFeedbackType: .success, text: "Es ist grün", withInterval: 0.35)
+        case .none: break
+        }
     }
     
     private func classIndexToPhase(_ index: Int) -> Phase {
