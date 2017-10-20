@@ -43,6 +43,22 @@ class LightPhaseManager {
             case .none: return "None"
             }
         }
+        
+        func speech() -> String {
+            switch self {
+            case .red: return "Rot stehen"
+            case .green: return "Grün gehen"
+            case .none: return ""
+            }
+        }
+        
+        func hapticInterval() -> TimeInterval {
+            switch self {
+            case .red: return 1.4
+            case .green: return 0.35
+            case .none: return 0
+            }
+        }
     }
     
     // Determines how often a detection needs to be validated
@@ -154,8 +170,8 @@ class LightPhaseManager {
         self.feedbackManager.stop()
         
         switch newPhase {
-        case .red: self.feedbackManager.start(withFeedbackType: .warning, text: "Es ist rot", withInterval: 1.4)
-        case .green: self.feedbackManager.start(withFeedbackType: .success, text: "Es ist grün", withInterval: 0.35)
+        case .red: self.feedbackManager.start(withFeedbackType: .warning, text: Phase.red.speech(), withInterval: Phase.red.hapticInterval())
+        case .green: self.feedbackManager.start(withFeedbackType: .success, text: Phase.green.speech(), withInterval: Phase.green.hapticInterval())
         case .none: break
         }
     }

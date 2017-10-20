@@ -16,8 +16,8 @@ class YOLO {
     public static let maxBoundingBoxes = 3
     
     // Tweak these values to get more or fewer predictions.
-    let confidenceThreshold: Float = 0.3//0.15
-    let iouThreshold: Float = 0.5
+    var confidenceThreshold: Float = 0.3//0.15
+    var iouThreshold: Float = 0.5
     
     struct Prediction {
         let classIndex: Int

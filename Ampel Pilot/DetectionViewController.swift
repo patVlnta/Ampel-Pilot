@@ -20,11 +20,14 @@ class DetectionViewController: UIViewController {
     @IBOutlet weak var resultsView: UIView!
     @IBOutlet weak var pauseScreen: UIVisualEffectView!
     
+    var viewModel: DetectionViewModel!
+    
     let yolo = YOLO()
     let motionManager = MotionManager()
     var lightPhaseManager: LightPhaseManager!
     
-    var videoCapture: VideoCapture!
+    var videoCapture: VideoCapture?
+    
     var devicePitchAcceptable = true
     var request: VNCoreMLRequest!
     var startTimes: [CFTimeInterval] = []
@@ -87,17 +90,14 @@ class DetectionViewController: UIViewController {
         lightPhaseManager = LightPhaseManager(confidenceThreshold: 0, maxDetections: YOLO.maxBoundingBoxes, minIOU: 0.3, feedback: true)
         motionManager.delegate = self
         
-        setUpBoundingBoxes()
         setupViews()
         setUpVision()
-        setUpCamera()
-        
-        frameCapturingStartTime = CACurrentMediaTime()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        motionManager.start()
+         setupViewModel()
+        #
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -113,14 +113,24 @@ class DetectionViewController: UIViewController {
     // MARK: - UI Interactions
     
     @objc func zoomInBtnPressed() {
-        self.videoCapture.zoomIn()
+        self.videoCapture?.zoomIn()
     }
     
     @objc func zoomOutBtnPressed() {
-        self.videoCapture.zoomOut()
+        self.videoCapture?.zoomOut()
     }
     
     // MARK: - Initialization
+    
+    func setupViewModel() {
+        viewModel?.initFetch {
+            self.setUpBoundingBoxes()
+            self.setupYolo()
+            self.setUpCamera()
+            
+            self.frameCapturingStartTime = CACurrentMediaTime()
+        }
+    }
     
     func setupViews() {
         self.pauseScreen.isHidden = true
@@ -140,6 +150,8 @@ class DetectionViewController: UIViewController {
     }
     
     func setUpBoundingBoxes() {
+        boundingBoxes = [BoundingBox]()
+        
         for _ in 0..<YOLO.maxBoundingBoxes {
             boundingBoxes.append(BoundingBox())
         }
@@ -148,6 +160,11 @@ class DetectionViewController: UIViewController {
         // 20 classes in total.
         colors.append(.red)
         colors.append(.green)
+    }
+    
+    func setupYolo() {
+        self.yolo.confidenceThreshold = viewModel.confidenceThreshold
+        self.yolo.iouThreshold = viewModel.iouThreshold
     }
     
     func setUpVision() {
@@ -163,17 +180,28 @@ class DetectionViewController: UIViewController {
         // change how the BoundingBox objects get scaled when they are drawn.
         // Currently they assume the full input image is used.
         
-        request.imageCropAndScaleOption = VNImageCropAndScaleOption.scaleFill//imageCropAndScaleOption = VNImageCropAndScaleOptionScaleFill
+        request.imageCropAndScaleOption = VNImageCropAndScaleOption.scaleFill
     }
     
     func setUpCamera() {
+        videoCapture = nil
+        
         videoCapture = VideoCapture()
-        videoCapture.delegate = self
-        videoCapture.fps = 15
-        videoCapture.setUp(sessionPreset: AVCaptureSession.Preset.hd1920x1080) { success in
+        videoCapture?.delegate = self
+        videoCapture?.fps = 15
+        
+        motionManager.stop()
+        
+        videoCapture?.setUp(sessionPreset: viewModel.capturePreset) { success in
             if success {
                 // Add the video preview into the UI.
-                if let previewLayer = self.videoCapture.previewLayer {
+                if let layers = self.videoPreview.layer.sublayers {
+                    for layer in layers {
+                        layer.removeFromSuperlayer()
+                    }
+                }
+                
+                if let previewLayer = self.videoCapture?.previewLayer {
                     self.videoPreview.layer.addSublayer(previewLayer)
                     self.resizePreviewLayer()
                 }
@@ -184,7 +212,8 @@ class DetectionViewController: UIViewController {
                 }
                 
                 // Once everything is set up, we can start capturing live video.
-                self.videoCapture.start()
+                self.videoCapture?.start()
+                self.motionManager.start()
             }
         }
     }
@@ -201,7 +230,7 @@ class DetectionViewController: UIViewController {
     }
     
     func resizePreviewLayer() {
-        videoCapture.previewLayer?.frame = videoPreview.bounds
+        videoCapture?.previewLayer?.frame = videoPreview.bounds
     }
     
     func predictUsingVision(pixelBuffer: CVPixelBuffer) {
@@ -262,7 +291,7 @@ class DetectionViewController: UIViewController {
         }
         
         let fps = self.measureFPS()
-        self.timeLabel.text = String(format: "Zoom \(self.videoCapture.captureDevice.videoZoomFactor)x, %.2f FPS, Phase -> \(phase.description())", fps)
+        self.timeLabel.text = String(format: "Zoom \(self.videoCapture?.captureDevice.videoZoomFactor)x, %.2f FPS, Phase -> \(phase.description())", fps)
     }
     
     func show(predictions: [YOLO.Prediction]) {
@@ -341,10 +370,12 @@ extension DetectionViewController: MotionManagerDelegate {
         let pitch = (180 / Double.pi * withMotion.attitude.pitch)/100
         self.devicePitchAcceptable = pitch < 0.6 ? false : true
         
-        if !self.devicePitchAcceptable && self.videoCapture.captureSession.isRunning {
-            self.videoCapture.stop()
-        } else if self.devicePitchAcceptable && !self.videoCapture.captureSession.isRunning {
-            self.videoCapture.start()
+        if let videoCapture = self.videoCapture {
+            if !self.devicePitchAcceptable && videoCapture.captureSession.isRunning {
+                videoCapture.stop()
+            } else if self.devicePitchAcceptable && !videoCapture.captureSession.isRunning {
+                videoCapture.start()
+            }
         }
     }
 }
