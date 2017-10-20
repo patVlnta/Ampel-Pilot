@@ -83,6 +83,34 @@ class DetectionViewController: UIViewController {
         
     }()
     
+    lazy var settingsButton: UIView = {
+        let btn = UIButton(type: .system)
+        btn.layer.cornerRadius = 5
+        btn.layer.masksToBounds = true
+        btn.backgroundColor = .white
+        btn.tintColor = .black
+        
+        btn.layer.borderColor = UIColor.black.cgColor
+        btn.layer.borderWidth = 0.4
+        
+        btn.setImage(#imageLiteral(resourceName: "settings_filled"), for: .normal)
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        
+        btn.addTarget(self, action: #selector(settingsBtnPressed), for: .touchUpInside)
+        btn.isEnabled = true
+        btn.alpha = 1.0
+        
+        return btn
+        
+    }()
+    
+    let adminOverlayView: UIView = {
+        let v = UIView()
+        v.translatesAutoresizingMaskIntoConstraints = false
+        v.backgroundColor = .clear
+        return v
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -97,12 +125,12 @@ class DetectionViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
          setupViewModel()
-        #
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         motionManager.stop()
+        videoCapture?.stop()
     }
     
     override func didReceiveMemoryWarning() {
@@ -118,6 +146,14 @@ class DetectionViewController: UIViewController {
     
     @objc func zoomOutBtnPressed() {
         self.videoCapture?.zoomOut()
+    }
+    @objc func settingsBtnPressed() {
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "settingsVC") as? SettingsViewController {
+            vc.viewModel = SettingsViewModel(dataManager: viewModel.dataManager)
+            let nv = UINavigationController(rootViewController: vc)
+            nv.view.backgroundColor = .white
+            present(nv, animated: true, completion: nil)
+        }
     }
     
     // MARK: - Initialization
@@ -135,11 +171,24 @@ class DetectionViewController: UIViewController {
     func setupViews() {
         self.pauseScreen.isHidden = true
         
-        view.addSubview(zoomInButton)
-        view.addSubview(zoomOutButton)
+        view.addSubview(adminOverlayView)
+        
+        adminOverlayView.addSubview(zoomInButton)
+        adminOverlayView.addSubview(zoomOutButton)
+        adminOverlayView.addSubview(settingsButton)
+        
+        adminOverlayView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        adminOverlayView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        adminOverlayView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true
+        adminOverlayView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor).isActive = true
+        
+        settingsButton.topAnchor.constraint(equalTo: adminOverlayView.topAnchor, constant: 20).isActive = true
+        settingsButton.rightAnchor.constraint(equalTo: adminOverlayView.rightAnchor, constant: -12).isActive = true
+        settingsButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        settingsButton.widthAnchor.constraint(equalTo: settingsButton.heightAnchor, constant: 0).isActive = true
         
         zoomOutButton.bottomAnchor.constraint(equalTo: resultsView.topAnchor, constant: -20).isActive = true
-        zoomOutButton.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -12).isActive = true
+        zoomOutButton.rightAnchor.constraint(equalTo: adminOverlayView.rightAnchor, constant: -12).isActive = true
         zoomOutButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         zoomOutButton.widthAnchor.constraint(equalTo: zoomOutButton.heightAnchor, constant: 0).isActive = true
         
@@ -350,8 +399,7 @@ extension DetectionViewController: VideoCaptureDelegate {
     
     func videoCaptureDidStart(_ capture: VideoCapture) {
         setView(view: self.pauseScreen, hidden: true, duration: 0.15)
-        setView(view: self.zoomInButton, hidden: false, duration: 0.15)
-        setView(view: self.zoomOutButton, hidden: false, duration: 0.15)
+        setView(view: self.adminOverlayView, hidden: false, duration: 0.15)
         
         self.show(predictions: [])
         self.lightPhaseManager.currentPhase = LightPhaseManager.Phase.none
@@ -360,8 +408,7 @@ extension DetectionViewController: VideoCaptureDelegate {
     
     func videoCaptureDidStop(_ capture: VideoCapture) {
         setView(view: self.pauseScreen, hidden: false, duration: 0.15)
-        setView(view: self.zoomInButton, hidden: true, duration: 0.15)
-        setView(view: self.zoomOutButton, hidden: true, duration: 0.15)
+        setView(view: self.adminOverlayView, hidden: true, duration: 0.15)
     }
 }
 

@@ -11,15 +11,15 @@ import AVFoundation
 
 struct Settings {
     // Detection
-    let sound: Bool
-    let vibrate: Bool
+    var sound: Bool
+    var vibrate: Bool
     
     // Yolo
-    let confidenceThreshold: Float
-    let iouThreshold: Float
+    var confidenceThreshold: Float
+    var iouThreshold: Float
     
     // Camera
-    let resolution: AVCaptureSession.Preset
+    var resolution: AVCaptureSession.Preset
     
     static func initDefaults() {
         if !Defaults.hasKey("sound") {
@@ -51,5 +51,12 @@ struct Settings {
         let resolution = Defaults[DefaultsKey<Any?>("resolution")] as! AVCaptureSession.Preset
         
         return Settings(sound: sound, vibrate: vibrate, confidenceThreshold: cThresh, iouThreshold: iouThresh, resolution: resolution)
+    }
+    
+    func save() {
+        Defaults[DefaultsKey<Bool>("sound")] = self.sound
+        Defaults[DefaultsKey<Bool>("vibrate")] = self.vibrate
+        Defaults[DefaultsKey<Double>("confidenceThreshold")] = Double(self.confidenceThreshold)
+        Defaults[DefaultsKey<Double>("iouThreshold")] = Double(self.iouThreshold)
     }
 }

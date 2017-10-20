@@ -15,4 +15,8 @@ class DataManager {
             complete(Settings.fetch())
         }
     }
+    
+    func saveSettings(_ newSettings: Settings) {
+        newSettings.save()
+    }
 }
