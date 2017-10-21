@@ -18,6 +18,7 @@ class SettingsViewModel {
             iouThreshold.value = settings?.iouThreshold ?? 0
             sound.value = settings?.sound ?? false
             vibrate.value = settings?.vibrate ?? false
+            cPreset.value = settings?.resolution ?? AVCaptureSession.Preset.hd1920x1080
             
             if let settings = settings {
                dataManager.saveSettings(settings)
@@ -29,6 +30,8 @@ class SettingsViewModel {
         return settings?.resolution ?? .hd1920x1080
     }
     
+    public var cPreset: Box<AVCaptureSession.Preset> = Box(AVCaptureSession.Preset.hd1920x1080)
+    
     public var confidenceThreshold: Box<Float> = Box(0)
     
     public var iouThreshold: Box<Float> = Box(0)
@@ -36,6 +39,21 @@ class SettingsViewModel {
     public var sound: Box<Bool> = Box(false)
     
     public var vibrate: Box<Bool> = Box(false)
+    
+    public var availableResolutions: [SelectionCellViewModel] {
+        var cells = [SelectionCellViewModel(title: "HD", value: AVCaptureSession.Preset.hd1920x1080, selected: true),
+                     SelectionCellViewModel(title: "4K", value: AVCaptureSession.Preset.hd4K3840x2160, selected: false)]
+        
+        cells = cells.map {
+            var selected = $0.selected
+            if let res = $0.value as? AVCaptureSession.Preset {
+                selected = cPreset.value == res ? true : false
+            }
+            return SelectionCellViewModel(title: $0.title, value: $0.value, selected: selected)
+        }
+        
+        return cells
+    }
     
     init(dataManager: DataManager) {
         self.dataManager = dataManager
@@ -65,5 +83,22 @@ extension SettingsViewModel {
     
     func updateVibrate(new: Bool) {
         settings?.vibrate = new
+    }
+    
+    func updateCapturePreset(new: AVCaptureSession.Preset) {
+        settings?.resolution = new
+    }
+}
+
+extension SettingsViewModel {
+    func formatCapturePresetToText(preset: AVCaptureSession.Preset) -> String {
+        switch preset {
+        case AVCaptureSession.Preset.hd1920x1080:
+            return "HD"
+        case AVCaptureSession.Preset.hd4K3840x2160:
+            return "4K"
+        default:
+            return "unbekannt"
+        }
     }
 }

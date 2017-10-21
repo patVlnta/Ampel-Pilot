@@ -7,8 +7,12 @@
 //
 
 import UIKit
+import AVFoundation
 
 class SettingsViewController: UITableViewController {
+    
+    private let CAM_SECTION = 3
+    private let RES_ROW = 0
     
     var viewModel: SettingsViewModel!
     
@@ -16,7 +20,7 @@ class SettingsViewController: UITableViewController {
     @IBOutlet weak var vibrationSwitch: UISwitch!
     @IBOutlet weak var confidenceSlider: UISlider!
     @IBOutlet weak var iouSlider: UISlider!
-    
+    @IBOutlet weak var resolutionLabel: UILabel!
     
     lazy var closeButton: UIBarButtonItem = {
         let bi = UIBarButtonItem(title: "Schließen", style: UIBarButtonItemStyle.plain, target: self, action: #selector(closeBtnPressed))
@@ -29,12 +33,16 @@ class SettingsViewController: UITableViewController {
         title = "Einstellungen"
         
         navigationItem.rightBarButtonItems = [closeButton]
-        navigationController?.navigationBar.prefersLargeTitles = true
+        setupViewModel()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        setupViewModel()
     }
     
     // MARK: - Initialization
@@ -55,6 +63,10 @@ class SettingsViewController: UITableViewController {
         
         viewModel.vibrate.bind {
             self.vibrationSwitch.setOn($0, animated: true)
+        }
+        
+        viewModel.cPreset.bind {
+            self.resolutionLabel.text = self.viewModel.formatCapturePresetToText(preset: $0)
         }
         
         viewModel?.initFetch()
@@ -79,6 +91,28 @@ class SettingsViewController: UITableViewController {
     
     @IBAction func iouSliderValueChanged(_ sender: UISlider) {
         viewModel.updateIOUThreshold(new: sender.value)
+    }
+    
+    // MARK: - Delegates
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == CAM_SECTION && indexPath.row == RES_ROW {
+            // Nav to selection screen
+            if let vc = storyboard?.instantiateViewController(withIdentifier: "selectionVC") as? SelectionViewController{
+                let cells = viewModel.availableResolutions
+                vc.viewModel = SelectionViewModel(title: "Auflösung", cells: Box(cells))
+                
+                vc.viewModel.cells.bind(listener: { (fasdf) in
+                    let selectedCell = fasdf.first(where: { (cellViewModel) -> Bool in
+                        return cellViewModel.selected
+                    })
+                    
+                    if let resolution = selectedCell?.value as? AVCaptureSession.Preset {
+                        self.viewModel.updateCapturePreset(new: resolution)
+                    }
+                })
+                navigationController?.pushViewController(vc, animated: true)
+            }
+        }
     }
     
     

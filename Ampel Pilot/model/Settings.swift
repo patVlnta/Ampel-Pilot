@@ -58,5 +58,6 @@ struct Settings {
         Defaults[DefaultsKey<Bool>("vibrate")] = self.vibrate
         Defaults[DefaultsKey<Double>("confidenceThreshold")] = Double(self.confidenceThreshold)
         Defaults[DefaultsKey<Double>("iouThreshold")] = Double(self.iouThreshold)
+        Defaults[DefaultsKey<Any?>("resolution")] = self.resolution
     }
 }

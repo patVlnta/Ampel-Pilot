@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A31AF2121F9B370B0067132E /* SelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31AF2111F9B370B0067132E /* SelectionViewController.swift */; };
+		A31AF2141F9B39750067132E /* SelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31AF2131F9B39750067132E /* SelectionViewModel.swift */; };
 		A327FA691F94A8AF002A33FE /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A327FA681F94A8AF002A33FE /* Settings.swift */; };
 		A327FA6C1F94B485002A33FE /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A327FA6B1F94B485002A33FE /* DataManager.swift */; };
 		A327FA6E1F94B75A002A33FE /* UserDefaults+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A327FA6D1F94B75A002A33FE /* UserDefaults+Helpers.swift */; };
@@ -52,6 +54,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A31AF2111F9B370B0067132E /* SelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionViewController.swift; sourceTree = "<group>"; };
+		A31AF2131F9B39750067132E /* SelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionViewModel.swift; sourceTree = "<group>"; };
 		A327FA681F94A8AF002A33FE /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		A327FA6B1F94B485002A33FE /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		A327FA6D1F94B75A002A33FE /* UserDefaults+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Helpers.swift"; sourceTree = "<group>"; };
@@ -117,6 +121,7 @@
 				A327FA6F1F94C597002A33FE /* SettingsViewModel.swift */,
 				A327FA711F94C5A0002A33FE /* DetectionViewModel.swift */,
 				A32E3A1A1F9A3F870059276D /* Box.swift */,
+				A31AF2131F9B39750067132E /* SelectionViewModel.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -160,6 +165,7 @@
 				A35F9F2C1F8378DA00208042 /* AppDelegate.swift */,
 				A35F9F2E1F8378DA00208042 /* DetectionViewController.swift */,
 				A32E3A181F9A20C40059276D /* SettingsViewController.swift */,
+				A31AF2111F9B370B0067132E /* SelectionViewController.swift */,
 				A35F9F301F8378DA00208042 /* Main.storyboard */,
 				A35F9F331F8378DB00208042 /* Assets.xcassets */,
 				A35F9F351F8378DB00208042 /* LaunchScreen.storyboard */,
@@ -358,6 +364,7 @@
 				A395C7BC1F8A1A2A00BF0CB0 /* AmpelPilot1_2rg.mlmodel in Sources */,
 				A35F9F2F1F8378DA00208042 /* DetectionViewController.swift in Sources */,
 				A3B07EE31F84DC9000B791B5 /* LightPhaseManager.swift in Sources */,
+				A31AF2141F9B39750067132E /* SelectionViewModel.swift in Sources */,
 				A327FA691F94A8AF002A33FE /* Settings.swift in Sources */,
 				A35F9F6A1F837E2F00208042 /* AmpelPilot1_2.mlmodel in Sources */,
 				A32E3A191F9A20C40059276D /* SettingsViewController.swift in Sources */,
@@ -366,6 +373,7 @@
 				A327FA701F94C597002A33FE /* SettingsViewModel.swift in Sources */,
 				A3E8769A1F87B235006BEE74 /* MotionManager.swift in Sources */,
 				A35F9F681F837E0400208042 /* BoundingBox.swift in Sources */,
+				A31AF2121F9B370B0067132E /* SelectionViewController.swift in Sources */,
 				A327FA6E1F94B75A002A33FE /* UserDefaults+Helpers.swift in Sources */,
 				A327FA721F94C5A0002A33FE /* DetectionViewModel.swift in Sources */,
 				A35F9F611F837D9300208042 /* Helpers.swift in Sources */,

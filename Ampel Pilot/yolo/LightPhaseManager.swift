@@ -31,6 +31,11 @@ class LightPhaseManager {
         }
     }
     
+    struct Feedback {
+        var sound: Bool
+        var vibrate: Bool
+    }
+    
     public enum Phase {
         case red
         case green

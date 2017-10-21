@@ -115,7 +115,6 @@ class DetectionViewController: UIViewController {
         super.viewDidLoad()
         
         timeLabel.text = ""
-        lightPhaseManager = LightPhaseManager(confidenceThreshold: 0, maxDetections: YOLO.maxBoundingBoxes, minIOU: 0.3, feedback: true)
         motionManager.delegate = self
         
         setupViews()
@@ -131,6 +130,7 @@ class DetectionViewController: UIViewController {
         super.viewDidDisappear(animated)
         motionManager.stop()
         videoCapture?.stop()
+        lightPhaseManager.feedbackManager.stop()
     }
     
     override func didReceiveMemoryWarning() {
@@ -160,6 +160,8 @@ class DetectionViewController: UIViewController {
     
     func setupViewModel() {
         viewModel?.initFetch {
+            self.lightPhaseManager = LightPhaseManager(confidenceThreshold: 0, maxDetections: YOLO.maxBoundingBoxes, minIOU: 0.3, feedback: true)
+            
             self.setUpBoundingBoxes()
             self.setupYolo()
             self.setUpCamera()
