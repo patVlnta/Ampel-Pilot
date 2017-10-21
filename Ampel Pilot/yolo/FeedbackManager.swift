@@ -32,13 +32,17 @@ class FeedbackManager {
 //        self.generator.prepare()
     }
     
-    public func start(withFeedbackType type: UINotificationFeedbackType, text: String, withInterval interval: TimeInterval) {
+    public func start(withFeedbackType type: UINotificationFeedbackType, text: String, withInterval interval: TimeInterval, feedback: LightPhaseManager.Feedback) {
         DispatchQueue.main.async {
-            self.doHapticFeedback()
-            self.speekText(text: text)
+            if feedback.sound {
+                self.speekText(text: text)
+                self.speechTimer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(self.doSpeechFeedback), userInfo: ["speech": text], repeats: true)
+            }
             
-            self.hapticTimer = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(self.doHapticFeedback), userInfo: nil, repeats: true)
-            self.speechTimer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(self.doSpeechFeedback), userInfo: ["speech": text], repeats: true)
+            if feedback.vibrate {
+                self.doHapticFeedback()
+                self.hapticTimer = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(self.doHapticFeedback), userInfo: nil, repeats: true)
+            }
         }
         
     }

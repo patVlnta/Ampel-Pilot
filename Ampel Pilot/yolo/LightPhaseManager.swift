@@ -76,11 +76,9 @@ class LightPhaseManager {
     
     var maxDetections: Int!
     
-    var feedback: Bool! {
+    var feedback: Feedback! {
         didSet {
-            if !feedback {
-                self.feedbackManager.stop()
-            }
+            self.feedbackManager.stop()
         }
     }
     
@@ -96,7 +94,7 @@ class LightPhaseManager {
         }
     }
     
-    init(confidenceThreshold: Int, maxDetections: Int, minIOU: Float, feedback: Bool) {
+    init(confidenceThreshold: Int, maxDetections: Int, minIOU: Float, feedback: Feedback) {
         self.feedbackManager = FeedbackManager()
         
         self.confidenceThreshold = confidenceThreshold
@@ -168,15 +166,11 @@ class LightPhaseManager {
     }
     
     private func onPhaseChanged(_ newPhase: Phase) {
-        if !feedback {
-            return
-        }
-        
         self.feedbackManager.stop()
         
         switch newPhase {
-        case .red: self.feedbackManager.start(withFeedbackType: .warning, text: Phase.red.speech(), withInterval: Phase.red.hapticInterval())
-        case .green: self.feedbackManager.start(withFeedbackType: .success, text: Phase.green.speech(), withInterval: Phase.green.hapticInterval())
+        case .red: self.feedbackManager.start(withFeedbackType: .warning, text: Phase.red.speech(), withInterval: Phase.red.hapticInterval(), feedback: feedback)
+        case .green: self.feedbackManager.start(withFeedbackType: .success, text: Phase.green.speech(), withInterval: Phase.green.hapticInterval(), feedback: feedback)
         case .none: break
         }
     }

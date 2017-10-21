@@ -26,6 +26,10 @@ class DetectionViewModel {
         return settings?.iouThreshold ?? 0.5
     }
     
+    public var feedback: LightPhaseManager.Feedback {
+        return LightPhaseManager.Feedback(sound: settings?.sound ?? true, vibrate: settings?.vibrate ?? true)
+    }
+    
     init(dataManager: DataManager) {
         self.dataManager = dataManager
     }

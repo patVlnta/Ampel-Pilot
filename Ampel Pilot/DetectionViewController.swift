@@ -160,7 +160,7 @@ class DetectionViewController: UIViewController {
     
     func setupViewModel() {
         viewModel?.initFetch {
-            self.lightPhaseManager = LightPhaseManager(confidenceThreshold: 0, maxDetections: YOLO.maxBoundingBoxes, minIOU: 0.3, feedback: true)
+            self.lightPhaseManager = LightPhaseManager(confidenceThreshold: 0, maxDetections: YOLO.maxBoundingBoxes, minIOU: 0.3, feedback: self.viewModel.feedback)
             
             self.setUpBoundingBoxes()
             self.setupYolo()
