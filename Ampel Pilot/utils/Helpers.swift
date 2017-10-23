@@ -22,6 +22,14 @@ let labels = ["red", "green"]
 
 let anchors: [Float] = [1.08, 1.19, 3.42, 4.41, 6.63, 11.38, 9.42, 5.11, 16.62, 10.52]
 
+struct Platform {
+    
+    static var isSimulator: Bool {
+        return TARGET_OS_SIMULATOR != 0
+    }
+    
+}
+
 /**
  Removes bounding boxes that overlap too much with other boxes that have
  a higher score.

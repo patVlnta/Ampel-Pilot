@@ -21,6 +21,7 @@ public class VideoCapture: NSObject {
     public var previewLayer: AVCaptureVideoPreviewLayer?
     public weak var delegate: VideoCaptureDelegate?
     public var fps = 15
+    public var initialZoom: CGFloat = 1.5
     
     let captureSession = AVCaptureSession()
     let videoOutput = AVCaptureVideoDataOutput()
@@ -52,6 +53,9 @@ public class VideoCapture: NSObject {
         
         self.captureDevice = captureDevice
         
+        
+        
+        
         guard let videoInput = try? AVCaptureDeviceInput(device: captureDevice) else {
             print("Error: could not create AVCaptureDeviceInput")
             return false
@@ -80,6 +84,14 @@ public class VideoCapture: NSObject {
         // We want the buffers to be in portrait orientation otherwise they are
         // rotated by 90 degrees. Need to set this _after_ addOutput()!
         videoOutput.connection(with: AVMediaType.video)?.videoOrientation = .portrait
+        
+        do {
+            try self.captureDevice.lockForConfiguration()
+            self.captureDevice.videoZoomFactor = initialZoom
+            self.captureDevice.unlockForConfiguration()
+        } catch {
+            print("[VideoCapture]: Error locking configuration")
+        }
         
         captureSession.commitConfiguration()
         return true

@@ -36,6 +36,8 @@ class SelectionViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "selectionCell", for: indexPath)
+        cell.textLabel?.font = UIFont.preferredFont(forTextStyle: .body)
+        cell.textLabel?.adjustsFontForContentSizeCategory = true
         cell.textLabel?.text = viewModel.getTitle(forIndexPath: indexPath)
         
         if viewModel.cellSelected(atIndexPath: indexPath) {

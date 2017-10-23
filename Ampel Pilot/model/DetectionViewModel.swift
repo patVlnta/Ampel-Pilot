@@ -18,6 +18,10 @@ class DetectionViewModel {
         return settings?.resolution ?? .hd1920x1080
     }
     
+    public var captureZoom: Float {
+        return settings?.zoom ?? 1.5
+    }
+    
     public var confidenceThreshold: Float {
         return settings?.confidenceThreshold ?? 0.3
     }

@@ -164,8 +164,11 @@ class DetectionViewController: UIViewController {
             
             self.setUpBoundingBoxes()
             self.setupYolo()
-            self.setUpCamera()
             
+            if !Platform.isSimulator {
+                self.setUpCamera()
+            }
+        
             self.frameCapturingStartTime = CACurrentMediaTime()
         }
     }
@@ -175,8 +178,8 @@ class DetectionViewController: UIViewController {
         
         view.addSubview(adminOverlayView)
         
-        adminOverlayView.addSubview(zoomInButton)
-        adminOverlayView.addSubview(zoomOutButton)
+//        adminOverlayView.addSubview(zoomInButton)
+//        adminOverlayView.addSubview(zoomOutButton)
         adminOverlayView.addSubview(settingsButton)
         
         adminOverlayView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
@@ -189,15 +192,15 @@ class DetectionViewController: UIViewController {
         settingsButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         settingsButton.widthAnchor.constraint(equalTo: settingsButton.heightAnchor, constant: 0).isActive = true
         
-        zoomOutButton.bottomAnchor.constraint(equalTo: resultsView.topAnchor, constant: -20).isActive = true
-        zoomOutButton.rightAnchor.constraint(equalTo: adminOverlayView.rightAnchor, constant: -12).isActive = true
-        zoomOutButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        zoomOutButton.widthAnchor.constraint(equalTo: zoomOutButton.heightAnchor, constant: 0).isActive = true
-        
-        zoomInButton.bottomAnchor.constraint(equalTo: zoomOutButton.topAnchor, constant: -12).isActive = true
-        zoomInButton.rightAnchor.constraint(equalTo: zoomOutButton.rightAnchor, constant: 0).isActive = true
-        zoomInButton.heightAnchor.constraint(equalTo: zoomOutButton.heightAnchor, constant: 0).isActive = true
-        zoomInButton.widthAnchor.constraint(equalTo: zoomOutButton.widthAnchor, constant: 0).isActive = true
+//        zoomOutButton.bottomAnchor.constraint(equalTo: resultsView.topAnchor, constant: -20).isActive = true
+//        zoomOutButton.rightAnchor.constraint(equalTo: adminOverlayView.rightAnchor, constant: -12).isActive = true
+//        zoomOutButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+//        zoomOutButton.widthAnchor.constraint(equalTo: zoomOutButton.heightAnchor, constant: 0).isActive = true
+//
+//        zoomInButton.bottomAnchor.constraint(equalTo: zoomOutButton.topAnchor, constant: -12).isActive = true
+//        zoomInButton.rightAnchor.constraint(equalTo: zoomOutButton.rightAnchor, constant: 0).isActive = true
+//        zoomInButton.heightAnchor.constraint(equalTo: zoomOutButton.heightAnchor, constant: 0).isActive = true
+//        zoomInButton.widthAnchor.constraint(equalTo: zoomOutButton.widthAnchor, constant: 0).isActive = true
     }
     
     func setUpBoundingBoxes() {
@@ -239,6 +242,7 @@ class DetectionViewController: UIViewController {
         
         videoCapture = VideoCapture()
         videoCapture?.delegate = self
+        videoCapture?.initialZoom = CGFloat(self.viewModel.captureZoom)
         videoCapture?.fps = 15
         
         motionManager.stop()
@@ -356,7 +360,7 @@ class DetectionViewController: UIViewController {
                 // aspect ratio. The video preview also may be letterboxed at the top
                 // and bottom.
                 let width = view.bounds.width
-                let height = width * 16 / 9
+                let height = width * (self.viewModel.capturePreset == .vga640x480 ? (4 / 3) : (16 / 9))
                 let scaleX = width / CGFloat(YOLO.inputWidth)
                 let scaleY = height / CGFloat(YOLO.inputHeight)
                 let top = (view.bounds.height - height) / 2

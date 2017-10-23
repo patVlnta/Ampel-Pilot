@@ -13,6 +13,7 @@ class SettingsViewController: UITableViewController {
     
     private let CAM_SECTION = 3
     private let RES_ROW = 0
+    private let ZOOM_ROW = 1
     
     var viewModel: SettingsViewModel!
     
@@ -21,6 +22,7 @@ class SettingsViewController: UITableViewController {
     @IBOutlet weak var confidenceSlider: UISlider!
     @IBOutlet weak var iouSlider: UISlider!
     @IBOutlet weak var resolutionLabel: UILabel!
+    @IBOutlet weak var zoomLabel: UILabel!
     
     lazy var closeButton: UIBarButtonItem = {
         let bi = UIBarButtonItem(title: "Schließen", style: UIBarButtonItemStyle.plain, target: self, action: #selector(closeBtnPressed))
@@ -69,6 +71,10 @@ class SettingsViewController: UITableViewController {
             self.resolutionLabel.text = self.viewModel.formatCapturePresetToText(preset: $0)
         }
         
+        viewModel.zoom.bind {
+            self.zoomLabel.text = self.viewModel.formatZoomToText(zoom: $0)
+        }
+        
         viewModel?.initFetch()
     }
     
@@ -97,12 +103,12 @@ class SettingsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == CAM_SECTION && indexPath.row == RES_ROW {
             // Nav to selection screen
-            if let vc = storyboard?.instantiateViewController(withIdentifier: "selectionVC") as? SelectionViewController{
+            if let vc = storyboard?.instantiateViewController(withIdentifier: "selectionVC") as? SelectionViewController {
                 let cells = viewModel.availableResolutions
                 vc.viewModel = SelectionViewModel(title: "Auflösung", cells: Box(cells))
                 
-                vc.viewModel.cells.bind(listener: { (fasdf) in
-                    let selectedCell = fasdf.first(where: { (cellViewModel) -> Bool in
+                vc.viewModel.cells.bind(listener: { (cellVm) in
+                    let selectedCell = cellVm.first(where: { (cellViewModel) -> Bool in
                         return cellViewModel.selected
                     })
                     
@@ -112,6 +118,27 @@ class SettingsViewController: UITableViewController {
                 })
                 navigationController?.pushViewController(vc, animated: true)
             }
+        } else if indexPath.section == CAM_SECTION && indexPath.row == ZOOM_ROW {
+            // Nav to selection screen
+            if let vc = storyboard?.instantiateViewController(withIdentifier: "selectionVC") as? SelectionViewController {
+                let cells = viewModel.availableZoomLevels
+                vc.viewModel = SelectionViewModel(title: "Zoom", cells: Box(cells))
+                
+                vc.viewModel.cells.bind(listener: { (cellVm) in
+                    let selectedCell = cellVm.first(where: { (cellViewModel) -> Bool in
+                        return cellViewModel.selected
+                    })
+
+                    if let zoom = selectedCell?.value as? Float {
+                        print("changed")
+                        self.viewModel.updateZoomLevel(new: zoom)
+                    }
+                })
+                navigationController?.pushViewController(vc, animated: true)
+            }
+        } else if indexPath.section == (tableView.numberOfSections - 1) {
+            tableView.deselectRow(at: indexPath, animated: true)
+            self.viewModel.reset()
         }
     }
     
