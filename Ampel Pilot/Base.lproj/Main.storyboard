@@ -5,6 +5,8 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13526"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Baseline standard spacing" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,7 +26,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ce7-Li-NTk" userLabel="Results">
                                 <rect key="frame" x="0.0" y="632.5" width="375" height="34.5"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Elapsed Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UGh-bZ-CQP" userLabel="Time Label">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Elapsed Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UGh-bZ-CQP" userLabel="Time Label">
                                         <rect key="frame" x="20" y="10" width="335" height="14.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
@@ -39,22 +41,48 @@
                                     <constraint firstAttribute="bottom" secondItem="UGh-bZ-CQP" secondAttribute="bottom" constant="10" id="WAU-eq-41a"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Demoanwendung: Nicht für die Navigation durch den Straßenverkehr geeignet" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1gf-91-0pO">
+                                <rect key="frame" x="0.0" y="596.5" width="375" height="29"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="12"/>
+                                <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y3D-2k-3I4" userLabel="Pause Screen">
                                 <rect key="frame" x="0.0" y="43" width="375" height="624"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="6SJ-Xs-eiY">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="624"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pausiert" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aQs-X4-oie">
-                                            <rect key="frame" x="135.5" y="296.5" width="105.5" height="31.5"/>
-                                            <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="26"/>
-                                            <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QQq-ax-zaY" userLabel="Container View">
+                                            <rect key="frame" x="0.0" y="269" width="375" height="86"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pausiert" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aQs-X4-oie">
+                                                    <rect key="frame" x="134" y="0.0" width="105.5" height="31.5"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="26"/>
+                                                    <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zum Fortsetzen der Erkennung bringe das Gerät in einen für die Ampelerkennung günstigen Neigungswinkel" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ecq-b2-XSb">
+                                                    <rect key="frame" x="16" y="35.5" width="343" height="50.5"/>
+                                                    <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="aQs-X4-oie" firstAttribute="bottom" secondItem="Ecq-b2-XSb" secondAttribute="top" constant="-4" id="47M-1K-3oW"/>
+                                                <constraint firstAttribute="bottom" secondItem="Ecq-b2-XSb" secondAttribute="bottom" id="9aA-5c-WaX"/>
+                                                <constraint firstItem="Ecq-b2-XSb" firstAttribute="leading" secondItem="QQq-ax-zaY" secondAttribute="leading" constant="16" id="FYn-nh-cUG"/>
+                                                <constraint firstAttribute="trailing" secondItem="Ecq-b2-XSb" secondAttribute="trailing" constant="16" id="RRt-JG-Gmy"/>
+                                                <constraint firstItem="aQs-X4-oie" firstAttribute="centerX" secondItem="QQq-ax-zaY" secondAttribute="centerX" id="Vfm-Qc-Dbi"/>
+                                                <constraint firstItem="aQs-X4-oie" firstAttribute="top" secondItem="QQq-ax-zaY" secondAttribute="top" id="fMU-0I-XG7"/>
+                                            </constraints>
+                                        </view>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="aQs-X4-oie" firstAttribute="centerY" secondItem="6SJ-Xs-eiY" secondAttribute="centerY" id="1mC-vV-RPH"/>
-                                        <constraint firstItem="aQs-X4-oie" firstAttribute="centerX" secondItem="6SJ-Xs-eiY" secondAttribute="centerX" id="Xw9-E7-KDf"/>
+                                        <constraint firstItem="QQq-ax-zaY" firstAttribute="leading" secondItem="6SJ-Xs-eiY" secondAttribute="leading" id="Jo2-cB-8rW"/>
+                                        <constraint firstItem="QQq-ax-zaY" firstAttribute="centerY" secondItem="6SJ-Xs-eiY" secondAttribute="centerY" id="XA3-sK-WLE"/>
+                                        <constraint firstAttribute="trailing" secondItem="QQq-ax-zaY" secondAttribute="trailing" id="fSi-Aw-lP6"/>
                                     </constraints>
                                 </view>
                                 <blurEffect style="dark"/>
@@ -66,9 +94,12 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Ce7-Li-NTk" secondAttribute="bottom" id="E7E-uY-UJ7"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ntT-eB-72z" secondAttribute="trailing" id="F7U-AF-cFt"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Y3D-2k-3I4" secondAttribute="bottom" id="G93-e0-1Ed"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="1gf-91-0pO" secondAttribute="trailing" id="Oji-kK-xcu"/>
+                            <constraint firstItem="Ce7-Li-NTk" firstAttribute="firstBaseline" secondItem="1gf-91-0pO" secondAttribute="baseline" constant="10" symbolType="layoutAnchor" id="ViE-4g-Qe3"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ntT-eB-72z" secondAttribute="bottom" id="ee5-bp-W75"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="Y3D-2k-3I4" secondAttribute="top" constant="21" id="gQw-bg-1c2"/>
                             <constraint firstItem="ntT-eB-72z" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="gT5-nM-syh"/>
+                            <constraint firstItem="1gf-91-0pO" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="kwX-wF-SR0"/>
                             <constraint firstItem="Ce7-Li-NTk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="nrP-TT-hT1"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Y3D-2k-3I4" secondAttribute="trailing" id="rPp-Kc-U7h"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Ce7-Li-NTk" secondAttribute="trailing" id="v0T-yX-2jO"/>

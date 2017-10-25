@@ -44,6 +44,8 @@ class DetectionViewController: UIViewController {
     var frameCapturingStartTime = CACurrentMediaTime()
     let semaphore = DispatchSemaphore(value: 2)
     
+    private var enteringForeground = false
+    
     lazy var zoomInButton: UIView = {
         let btn = UIButton(type: .system)
         btn.layer.cornerRadius = 5
@@ -101,11 +103,18 @@ class DetectionViewController: UIViewController {
         return v
     }()
     
+    // MARK: - Lifecycle Methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = "Ampelpilot"
         navigationItem.rightBarButtonItems = [settingsButton]
+        
+        //NotificationCenter.default.addObserver(self, selector: #selector(willResignActive), name: .UIApp, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: .UIApplicationWillEnterForeground, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(didBecomeActive), name: .UIApplicationDidBecomeActive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(didEnterBackground), name: .UIApplicationDidEnterBackground, object: nil)
         
         //edgesForExtendedLayout = []
         videoPreview.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
@@ -121,6 +130,7 @@ class DetectionViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        print("didAppear")
          setupViewModel()
     }
     
@@ -128,12 +138,30 @@ class DetectionViewController: UIViewController {
         super.viewDidDisappear(animated)
         motionManager.stop()
         videoCapture?.stop()
-        lightPhaseManager.feedbackManager.stop()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         print(#function)
+    }
+    
+    @objc private func willEnterForeground() {
+        print("willEnterForeground")
+        enteringForeground = true
+    }
+    
+    @objc private func didBecomeActive() {
+        print("didBecomeActive")
+        if enteringForeground {
+          setupViewModel()
+        }
+        enteringForeground = false
+    }
+    
+    @objc private func didEnterBackground() {
+        print("didEnterBackground")
+        motionManager.stop()
+        videoCapture?.stop()
     }
     
     // MARK: - UI Interactions
@@ -357,7 +385,7 @@ class DetectionViewController: UIViewController {
         self.visualFeedbackView.setPhase(phase)
         
         let fps = self.measureFPS()
-        self.timeLabel.text = String(format: "Zoom \(self.videoCapture?.captureDevice.videoZoomFactor)x, %.2f FPS, Phase -> \(phase.description())", fps)
+        self.timeLabel.text = String(format: "Zoom \(self.viewModel.captureZoom)x, %.2f FPS, Phase -> \(phase.description())", fps)
     }
     
     func show(predictions: [YOLO.Prediction]) {
@@ -430,6 +458,8 @@ extension DetectionViewController: VideoCaptureDelegate {
     func videoCaptureDidStop(_ capture: VideoCapture) {
         setView(view: self.pauseScreen, hidden: false, duration: 0.15)
         setView(view: self.adminOverlayView, hidden: true, duration: 0.15)
+        
+        self.lightPhaseManager.feedbackManager.stop()
     }
 }
 

@@ -33,7 +33,7 @@ struct Settings {
         }
         
         if !Defaults.hasKey("confidenceThreshold") {
-            Defaults[DefaultsKey<Double>("confidenceThreshold")] = 0.3
+            Defaults[DefaultsKey<Double>("confidenceThreshold")] = 0.4
         }
         
         if !Defaults.hasKey("iouThreshold") {
@@ -45,7 +45,7 @@ struct Settings {
         }
         
         if !Defaults.hasKey("zoom") {
-            Defaults[DefaultsKey<Double>("zoom")] = 1.5
+            Defaults[DefaultsKey<Double>("zoom")] = 1.25
         }
         
         if !Defaults.hasKey("livePreview") {

@@ -13,22 +13,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-//        let dataManager = DataManager()
-//        let viewModel = DetectionViewModel(dataManager: dataManager)
-//        
-//        if let firstViewController = window?.rootViewController as? DetectionViewController {
-//            firstViewController.viewModel = viewModel
-//        }
+        // Prevents app from dimming and eventually locking the screen
+        application.isIdleTimerDisabled = true
         return true
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
 
 }
 

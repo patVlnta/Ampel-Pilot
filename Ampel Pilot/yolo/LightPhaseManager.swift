@@ -51,8 +51,8 @@ class LightPhaseManager {
         
         func speech() -> String {
             switch self {
-            case .red: return "Rot stehen"
-            case .green: return "Grün gehen"
+            case .red: return "Warte"
+            case .green: return "Es ist grün"
             case .none: return ""
             }
         }
@@ -85,6 +85,11 @@ class LightPhaseManager {
     var feedbackManager: FeedbackManager!
     
     var detections: [Detection]!
+    
+    // Keeping the state of detections for a certain amount of frames.
+    // Allows for smoother transition between changes of state
+    var maxFramesWithNoDetection: Int = 5
+    private var framesWithNoDetection: Int = 0
     
     var currentPhase: Phase! {
         didSet {
@@ -130,9 +135,18 @@ class LightPhaseManager {
             }
         }
         
-        // Remove all detections that have not been detected in this frame
-        // or set detections to only have detections that have been detected in the current frame
-        detections = detections.filter { $0.detectedInCurrentFrame }
+        // Keeping the current state of detections if no new detections came in until
+        // framesWithNoDetection exceeds maxFramesWithNoDetection
+        if predictions.count == 0 && framesWithNoDetection <= maxFramesWithNoDetection  {
+            // Increment backdoor count
+            framesWithNoDetection += 1
+        } else {
+            // Remove all detections that have not been detected in this frame
+            // or set detections to only have detections that have been detected in the current frame
+            detections = detections.filter { $0.detectedInCurrentFrame }
+
+            framesWithNoDetection = 0
+        }
     }
     
     func determine() -> Phase {

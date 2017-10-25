@@ -45,6 +45,7 @@ class VisualFeedbackView: UIView {
     
     private func setupViews() {
         addSubview(phaseLabel)
+        
         phaseLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         phaseLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
     }
