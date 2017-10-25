@@ -13,12 +13,15 @@ import CoreMedia
 import CoreMotion
 import VideoToolbox
 
+
 class DetectionViewController: UIViewController {
 
     @IBOutlet weak var videoPreview: UIView!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var resultsView: UIView!
     @IBOutlet weak var pauseScreen: UIVisualEffectView!
+    
+    let visualFeedbackView = VisualFeedbackView()
     
     var viewModel: DetectionViewModel!
     
@@ -83,25 +86,12 @@ class DetectionViewController: UIViewController {
         
     }()
     
-    lazy var settingsButton: UIView = {
-        let btn = UIButton(type: .system)
-        btn.layer.cornerRadius = 5
-        btn.layer.masksToBounds = true
-        btn.backgroundColor = .white
-        btn.tintColor = .black
-        
-        btn.layer.borderColor = UIColor.black.cgColor
-        btn.layer.borderWidth = 0.4
-        
-        btn.setImage(#imageLiteral(resourceName: "settings_filled"), for: .normal)
-        btn.translatesAutoresizingMaskIntoConstraints = false
-        
-        btn.addTarget(self, action: #selector(settingsBtnPressed), for: .touchUpInside)
-        btn.isEnabled = true
-        btn.alpha = 1.0
-        
-        return btn
-        
+    lazy var settingsButton: UIBarButtonItem = {
+        let settingsButton = UIBarButtonItem(title: NSString(string: "\u{2699}\u{0000FE0E}") as String, style: .plain, target: self, action: #selector(settingsBtnPressed))
+        let font = UIFont.systemFont(ofSize: 28) // adjust the size as required
+        let attributes = [NSAttributedStringKey.font : font]
+        settingsButton.setTitleTextAttributes(attributes, for: .normal)
+        return settingsButton
     }()
     
     let adminOverlayView: UIView = {
@@ -113,6 +103,14 @@ class DetectionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = "Ampelpilot"
+        navigationItem.rightBarButtonItems = [settingsButton]
+        
+        //edgesForExtendedLayout = []
+        videoPreview.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        
+        viewModel = DetectionViewModel(dataManager: DataManager())
         
         timeLabel.text = ""
         motionManager.delegate = self
@@ -152,7 +150,7 @@ class DetectionViewController: UIViewController {
             vc.viewModel = SettingsViewModel(dataManager: viewModel.dataManager)
             let nv = UINavigationController(rootViewController: vc)
             nv.view.backgroundColor = .white
-            present(nv, animated: true, completion: nil)
+            navigationController?.pushViewController(vc, animated: true)
         }
     }
     
@@ -165,6 +163,10 @@ class DetectionViewController: UIViewController {
             self.setUpBoundingBoxes()
             self.setupYolo()
             
+            self.visualFeedbackView.isHidden = self.viewModel.devScreen
+            self.videoPreview.isHidden = !self.viewModel.devScreen
+            self.resultsView.isHidden = !self.viewModel.devScreen
+            
             if !Platform.isSimulator {
                 self.setUpCamera()
             }
@@ -176,21 +178,25 @@ class DetectionViewController: UIViewController {
     func setupViews() {
         self.pauseScreen.isHidden = true
         
+        self.adminOverlayView.isHidden = true
+        self.visualFeedbackView.isHidden = true
+        self.pauseScreen.layer.zPosition = 99
+        
         view.addSubview(adminOverlayView)
+        view.addSubview(visualFeedbackView)
         
 //        adminOverlayView.addSubview(zoomInButton)
 //        adminOverlayView.addSubview(zoomOutButton)
-        adminOverlayView.addSubview(settingsButton)
         
         adminOverlayView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         adminOverlayView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         adminOverlayView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true
         adminOverlayView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor).isActive = true
         
-        settingsButton.topAnchor.constraint(equalTo: adminOverlayView.topAnchor, constant: 20).isActive = true
-        settingsButton.rightAnchor.constraint(equalTo: adminOverlayView.rightAnchor, constant: -12).isActive = true
-        settingsButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        settingsButton.widthAnchor.constraint(equalTo: settingsButton.heightAnchor, constant: 0).isActive = true
+        visualFeedbackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        visualFeedbackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        visualFeedbackView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true
+        visualFeedbackView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor).isActive = true
         
 //        zoomOutButton.bottomAnchor.constraint(equalTo: resultsView.topAnchor, constant: -20).isActive = true
 //        zoomOutButton.rightAnchor.constraint(equalTo: adminOverlayView.rightAnchor, constant: -12).isActive = true
@@ -256,14 +262,17 @@ class DetectionViewController: UIViewController {
                     }
                 }
                 
-                if let previewLayer = self.videoCapture?.previewLayer {
-                    self.videoPreview.layer.addSublayer(previewLayer)
-                    self.resizePreviewLayer()
-                }
                 
-                // Add the bounding box layers to the UI, on top of the video preview.
-                for box in self.boundingBoxes {
-                    box.addToLayer(self.videoPreview.layer)
+                if self.viewModel.devScreen {
+                    if let previewLayer = self.videoCapture?.previewLayer {
+                        self.videoPreview.layer.addSublayer(previewLayer)
+                        self.resizePreviewLayer()
+                    }
+                    
+                    // Add the bounding box layers to the UI, on top of the video preview.
+                    for box in self.boundingBoxes {
+                        box.addToLayer(self.videoPreview.layer)
+                    }
                 }
                 
                 // Once everything is set up, we can start capturing live video.
@@ -345,11 +354,17 @@ class DetectionViewController: UIViewController {
         case .none: self.resultsView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         }
         
+        self.visualFeedbackView.setPhase(phase)
+        
         let fps = self.measureFPS()
         self.timeLabel.text = String(format: "Zoom \(self.videoCapture?.captureDevice.videoZoomFactor)x, %.2f FPS, Phase -> \(phase.description())", fps)
     }
     
     func show(predictions: [YOLO.Prediction]) {
+        if !self.viewModel.devScreen {
+            return
+        }
+        
         for i in 0..<boundingBoxes.count {
             if i < predictions.count {
                 let prediction = predictions[i]

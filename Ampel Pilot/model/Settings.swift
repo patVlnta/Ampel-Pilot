@@ -21,6 +21,7 @@ struct Settings {
     // Camera
     var resolution: AVCaptureSession.Preset
     var zoom: Float
+    var livePreview: Bool
     
     static func initDefaults() {
         if !Defaults.hasKey("sound") {
@@ -46,6 +47,10 @@ struct Settings {
         if !Defaults.hasKey("zoom") {
             Defaults[DefaultsKey<Double>("zoom")] = 1.5
         }
+        
+        if !Defaults.hasKey("livePreview") {
+            Defaults[DefaultsKey<Bool>("livePreview")] = false
+        }
     }
     
     static func removeKeys() {
@@ -55,6 +60,7 @@ struct Settings {
         Defaults.remove("iouThreshold")
         Defaults.remove("resolution")
         Defaults.remove("zoom")
+        Defaults.remove("livePreview")
     }
     
     static func fetch() -> Settings {
@@ -64,8 +70,9 @@ struct Settings {
         let iouThresh = Float(Defaults[DefaultsKey<Double>("iouThreshold")])
         let resolution = Defaults[DefaultsKey<Any?>("resolution")] as! AVCaptureSession.Preset
         let zoom = Float(Defaults[DefaultsKey<Double>("zoom")])
+        let livePreview = Defaults[DefaultsKey<Bool>("livePreview")]
         
-        return Settings(sound: sound, vibrate: vibrate, confidenceThreshold: cThresh, iouThreshold: iouThresh, resolution: resolution, zoom: zoom)
+        return Settings(sound: sound, vibrate: vibrate, confidenceThreshold: cThresh, iouThreshold: iouThresh, resolution: resolution, zoom: zoom, livePreview: livePreview)
     }
     
     func save() {
@@ -75,5 +82,6 @@ struct Settings {
         Defaults[DefaultsKey<Double>("iouThreshold")] = Double(self.iouThreshold)
         Defaults[DefaultsKey<Any?>("resolution")] = self.resolution
         Defaults[DefaultsKey<Double>("zoom")] = Double(self.zoom)
+        Defaults[DefaultsKey<Bool>("livePreview")] = self.livePreview
     }
 }

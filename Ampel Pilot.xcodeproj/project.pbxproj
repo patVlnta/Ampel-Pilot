@@ -32,6 +32,7 @@
 		A35F9F6A1F837E2F00208042 /* AmpelPilot1_2.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = A35F9F691F837E2800208042 /* AmpelPilot1_2.mlmodel */; };
 		A395C7BC1F8A1A2A00BF0CB0 /* AmpelPilot1_2rg.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = A395C7BB1F8A1A0800BF0CB0 /* AmpelPilot1_2rg.mlmodel */; };
 		A395C7BE1F8A252500BF0CB0 /* FeedbackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A395C7BD1F8A252500BF0CB0 /* FeedbackManager.swift */; };
+		A3ADF3541F9FA67600EA4F8D /* VisualFeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3ADF3531F9FA67600EA4F8D /* VisualFeedbackView.swift */; };
 		A3B07EE31F84DC9000B791B5 /* LightPhaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B07EE21F84DC9000B791B5 /* LightPhaseManager.swift */; };
 		A3E8769A1F87B235006BEE74 /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E876991F87B235006BEE74 /* MotionManager.swift */; };
 /* End PBXBuildFile section */
@@ -85,6 +86,7 @@
 		A35F9F691F837E2800208042 /* AmpelPilot1_2.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = AmpelPilot1_2.mlmodel; sourceTree = "<group>"; };
 		A395C7BB1F8A1A0800BF0CB0 /* AmpelPilot1_2rg.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = AmpelPilot1_2rg.mlmodel; sourceTree = "<group>"; };
 		A395C7BD1F8A252500BF0CB0 /* FeedbackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackManager.swift; sourceTree = "<group>"; };
+		A3ADF3531F9FA67600EA4F8D /* VisualFeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualFeedbackView.swift; sourceTree = "<group>"; };
 		A3B07EE21F84DC9000B791B5 /* LightPhaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightPhaseManager.swift; sourceTree = "<group>"; };
 		A3E876991F87B235006BEE74 /* MotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -166,6 +168,7 @@
 				A35F9F2E1F8378DA00208042 /* DetectionViewController.swift */,
 				A32E3A181F9A20C40059276D /* SettingsViewController.swift */,
 				A31AF2111F9B370B0067132E /* SelectionViewController.swift */,
+				A3ADF3531F9FA67600EA4F8D /* VisualFeedbackView.swift */,
 				A35F9F301F8378DA00208042 /* Main.storyboard */,
 				A35F9F331F8378DB00208042 /* Assets.xcassets */,
 				A35F9F351F8378DB00208042 /* LaunchScreen.storyboard */,
@@ -365,6 +368,7 @@
 				A35F9F2F1F8378DA00208042 /* DetectionViewController.swift in Sources */,
 				A3B07EE31F84DC9000B791B5 /* LightPhaseManager.swift in Sources */,
 				A31AF2141F9B39750067132E /* SelectionViewModel.swift in Sources */,
+				A3ADF3541F9FA67600EA4F8D /* VisualFeedbackView.swift in Sources */,
 				A327FA691F94A8AF002A33FE /* Settings.swift in Sources */,
 				A35F9F6A1F837E2F00208042 /* AmpelPilot1_2.mlmodel in Sources */,
 				A32E3A191F9A20C40059276D /* SettingsViewController.swift in Sources */,

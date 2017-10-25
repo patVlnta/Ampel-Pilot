@@ -16,12 +16,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        let dataManager = DataManager()
-        let viewModel = DetectionViewModel(dataManager: dataManager)
-        
-        if let firstViewController = window?.rootViewController as? DetectionViewController {
-            firstViewController.viewModel = viewModel
-        }
+//        let dataManager = DataManager()
+//        let viewModel = DetectionViewModel(dataManager: dataManager)
+//        
+//        if let firstViewController = window?.rootViewController as? DetectionViewController {
+//            firstViewController.viewModel = viewModel
+//        }
         return true
     }
 

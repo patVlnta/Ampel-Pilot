@@ -34,6 +34,10 @@ class DetectionViewModel {
         return LightPhaseManager.Feedback(sound: settings?.sound ?? true, vibrate: settings?.vibrate ?? true)
     }
     
+    public var devScreen: Bool {
+        return settings?.livePreview ?? false
+    }
+    
     init(dataManager: DataManager) {
         self.dataManager = dataManager
     }

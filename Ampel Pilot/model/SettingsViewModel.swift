@@ -20,6 +20,7 @@ class SettingsViewModel {
             vibrate.value = settings?.vibrate ?? false
             cPreset.value = settings?.resolution ?? AVCaptureSession.Preset.hd1920x1080
             zoom.value = settings?.zoom ?? 1.5
+            livePreview.value = settings?.livePreview ?? false
             
             if let settings = settings {
                dataManager.saveSettings(settings)
@@ -36,6 +37,8 @@ class SettingsViewModel {
     public var cPreset: Box<AVCaptureSession.Preset> = Box(AVCaptureSession.Preset.hd1920x1080)
     
     public var zoom: Box<Float> = Box(0)
+    
+    public var livePreview: Box<Bool> = Box(false)
     
     public var confidenceThreshold: Box<Float> = Box(0)
     
@@ -129,6 +132,10 @@ extension SettingsViewModel {
     
     func updateZoomLevel(new: Float) {
         settings?.zoom = new
+    }
+    
+    func updateLivePreview(new: Bool) {
+        settings?.livePreview = new
     }
 }
 

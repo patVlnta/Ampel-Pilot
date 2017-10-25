@@ -11,7 +11,7 @@ import AVFoundation
 
 class SettingsViewController: UITableViewController {
     
-    private let CAM_SECTION = 3
+    private let CAM_SECTION = 2
     private let RES_ROW = 0
     private let ZOOM_ROW = 1
     
@@ -20,9 +20,9 @@ class SettingsViewController: UITableViewController {
     @IBOutlet weak var soundSwitch: UISwitch!
     @IBOutlet weak var vibrationSwitch: UISwitch!
     @IBOutlet weak var confidenceSlider: UISlider!
-    @IBOutlet weak var iouSlider: UISlider!
     @IBOutlet weak var resolutionLabel: UILabel!
     @IBOutlet weak var zoomLabel: UILabel!
+    @IBOutlet weak var camPreviewSwitch: UISwitch!
     
     lazy var closeButton: UIBarButtonItem = {
         let bi = UIBarButtonItem(title: "Schließen", style: UIBarButtonItemStyle.plain, target: self, action: #selector(closeBtnPressed))
@@ -34,13 +34,13 @@ class SettingsViewController: UITableViewController {
         
         title = "Einstellungen"
         
-        navigationItem.rightBarButtonItems = [closeButton]
+        //navigationItem.rightBarButtonItems = [closeButton]
         setupViewModel()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-         navigationController?.navigationBar.prefersLargeTitles = true
+         navigationController?.navigationBar.prefersLargeTitles = false
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -53,10 +53,6 @@ class SettingsViewController: UITableViewController {
         
         viewModel.confidenceThreshold.bind {
             self.confidenceSlider.setValue($0, animated: true)
-        }
-        
-        viewModel.iouThreshold.bind {
-            self.iouSlider.setValue($0, animated: true)
         }
         
         viewModel.sound.bind {
@@ -73,6 +69,10 @@ class SettingsViewController: UITableViewController {
         
         viewModel.zoom.bind {
             self.zoomLabel.text = self.viewModel.formatZoomToText(zoom: $0)
+        }
+        
+        viewModel.livePreview.bind {
+            self.camPreviewSwitch.setOn($0, animated: true)
         }
         
         viewModel?.initFetch()
@@ -95,52 +95,59 @@ class SettingsViewController: UITableViewController {
         viewModel.updateConfidenceThreshold(new: sender.value)
     }
     
-    @IBAction func iouSliderValueChanged(_ sender: UISlider) {
-        viewModel.updateIOUThreshold(new: sender.value)
+    @IBAction func camPreviewSwitchValueChanged(_ sender: UISwitch) {
+        viewModel.updateLivePreview(new: sender.isOn)
     }
     
     // MARK: - Delegates
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == CAM_SECTION && indexPath.row == RES_ROW {
-            // Nav to selection screen
-            if let vc = storyboard?.instantiateViewController(withIdentifier: "selectionVC") as? SelectionViewController {
-                let cells = viewModel.availableResolutions
-                vc.viewModel = SelectionViewModel(title: "Auflösung", cells: Box(cells))
-                
-                vc.viewModel.cells.bind(listener: { (cellVm) in
-                    let selectedCell = cellVm.first(where: { (cellViewModel) -> Bool in
-                        return cellViewModel.selected
-                    })
-                    
-                    if let resolution = selectedCell?.value as? AVCaptureSession.Preset {
-                        self.viewModel.updateCapturePreset(new: resolution)
-                    }
-                })
-                navigationController?.pushViewController(vc, animated: true)
-            }
+            self.showCapturePresetSelectionController()
         } else if indexPath.section == CAM_SECTION && indexPath.row == ZOOM_ROW {
-            // Nav to selection screen
-            if let vc = storyboard?.instantiateViewController(withIdentifier: "selectionVC") as? SelectionViewController {
-                let cells = viewModel.availableZoomLevels
-                vc.viewModel = SelectionViewModel(title: "Zoom", cells: Box(cells))
-                
-                vc.viewModel.cells.bind(listener: { (cellVm) in
-                    let selectedCell = cellVm.first(where: { (cellViewModel) -> Bool in
-                        return cellViewModel.selected
-                    })
-
-                    if let zoom = selectedCell?.value as? Float {
-                        print("changed")
-                        self.viewModel.updateZoomLevel(new: zoom)
-                    }
-                })
-                navigationController?.pushViewController(vc, animated: true)
-            }
+           self.showCaptureZoomSelectionController()
         } else if indexPath.section == (tableView.numberOfSections - 1) {
             tableView.deselectRow(at: indexPath, animated: true)
             self.viewModel.reset()
         }
     }
     
+    // MARK: - Custom Functions
     
+    private func showCapturePresetSelectionController() {
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "selectionVC") as? SelectionViewController {
+            let cells = viewModel.availableResolutions
+            vc.viewModel = SelectionViewModel(title: "Auflösung", cells: Box(cells))
+            
+            vc.viewModel.cells.bind(listener: { (cellVm) in
+                let selectedCell = cellVm.first(where: { (cellViewModel) -> Bool in
+                    return cellViewModel.selected
+                })
+                
+                if let resolution = selectedCell?.value as? AVCaptureSession.Preset {
+                    self.viewModel.updateCapturePreset(new: resolution)
+                }
+            })
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    private func showCaptureZoomSelectionController() {
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "selectionVC") as? SelectionViewController {
+            let cells = viewModel.availableZoomLevels
+            vc.viewModel = SelectionViewModel(title: "Zoom", cells: Box(cells))
+            
+            vc.viewModel.cells.bind(listener: { (cellVm) in
+                let selectedCell = cellVm.first(where: { (cellViewModel) -> Bool in
+                    return cellViewModel.selected
+                })
+                
+                if let zoom = selectedCell?.value as? Float {
+                    print("changed")
+                    self.viewModel.updateZoomLevel(new: zoom)
+                }
+            })
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+
 }
