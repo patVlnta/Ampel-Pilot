@@ -7,7 +7,7 @@
 [![License](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat
 )](http://mit-license.org)
 
-Pedestrian Traffic Light Detector for visual impaired people, that can be used as guidance for determining the current phase of a pedestrian traffic light.
+Pedestrian Traffic Light Detector for visually impaired people, that can be used as guidance for determining the current phase of a pedestrian traffic light.
 
 ![Demo GIF](https://github.com/patVlnta/Ampel-Pilot/blob/master/images/ap_demo.gif "Demo GIF Animation")
 
@@ -22,7 +22,7 @@ You can watch the full demo video [here](https://github.com/patVlnta/Ampel-Pilot
 
 ## Model and Dataset
 
-The model used in the application is trained with the ML framework YOLOv2. 3062 Images have been used during training given the following results on the validation set (630 images):
+The model used in the application is trained with the ML framework YOLOv2. `3062 Images` have been used during training given the following results on the validation set (`630 images`):
 
 | Light Phase        | Recall           | Precision  | IoU  |
 | ------------- |:-------------:| :-----:| :-----:|
@@ -41,6 +41,13 @@ if let colorMatrixFilter = CIFilter(name: "CIColorMatrix") {
             let a:CGFloat = 1
 ```
 
+The dataset has been collected in a joint effort between the Hochschule Augsburg and the University of Tuebingen. Students were able to contribute
+by sending their pictures of pedestrian traffic lights with the LightsCatcher application. Today the datasets consists of around `3600 images` and `4300 annotations`.
+
+* [Dataset repository](https://github.com/patVlnta/Ampel-Pilot/blob/master/images/ap_demo.webm?raw=true)
+* [LightsCatcher (Android)](https://play.google.com/store/apps/details?id=com.hs_augsburg_example.lightscatcher&hl=en)
+* [LightsCatcher (iOS)](https://itunes.apple.com/de/app/lightscatcher/id1227218052?mt=8)
+
 ## Limitations
 
 * Model trained on german traffic lights only
@@ -51,3 +58,14 @@ if let colorMatrixFilter = CIFilter(name: "CIColorMatrix") {
 
 * Xcode 8 or higher
 * iOS 11 or higher
+
+## Contributions
+
+PR´s and/or contributions to the dataset are always very welcome. If you have any further questions, ideas or enquiries, feel free to get in contact either by opening an issue or email [valpaet@gmail.com](mailto:valpaet@gmail.com).
+
+## Credits
+
+* Inspired by **hollance´s** [YOLO-CoreML-MPSNNGraph](https://github.com/hollance/YOLO-CoreML-MPSNNGraph)
+* **pjreddie** and all contributors for [YOLO/darknet](https://github.com/pjreddie/darknet)
+* Project team [@Hochschule Augsburg](https://www.hs-augsburg.de/Informatik/Ampel-Pilot.html)
+* Dataset contribution [@University of Tuebingen](https://www.uni-tuebingen.de/en/university.html)

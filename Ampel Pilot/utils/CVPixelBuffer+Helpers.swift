@@ -2,8 +2,7 @@
 //  CVPixelBuffer+Helpers.swift
 //  Ampel Pilot
 //
-//  Created by Patrick Valenta on 03.10.17.
-//  Copyright © 2017 Patrick Valenta. All rights reserved.
+//  Original source by hollance on 21.06.2017 @https://github.com/hollance/YOLO-CoreML-MPSNNGraph.
 //
 
 import Foundation

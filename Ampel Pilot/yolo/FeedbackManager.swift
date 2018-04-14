@@ -27,9 +27,6 @@ class FeedbackManager {
         
         self.speechSynthesizer = AVSpeechSynthesizer()
         self.speechVoice = AVSpeechSynthesisVoice(language: "de-DE")
-    
-//        self.generator = UISelectionFeedbackGenerator()
-//        self.generator.prepare()
     }
     
     public func start(withFeedbackType type: UINotificationFeedbackType, text: String, withInterval interval: TimeInterval, feedback: LightPhaseManager.Feedback) {

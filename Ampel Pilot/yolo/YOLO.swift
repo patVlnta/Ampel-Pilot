@@ -2,8 +2,7 @@
 //  YOLO.swift
 //  Ampel Pilot
 //
-//  Created by Patrick Valenta on 03.10.17.
-//  Copyright © 2017 Patrick Valenta. All rights reserved.
+//  Original source by hollance on 21.06.2017 @https://github.com/hollance/YOLO-CoreML-MPSNNGraph.
 //
 
 import Foundation
@@ -31,11 +30,6 @@ class YOLO {
     
     public func predict(image: CVPixelBuffer) throws -> [Prediction] {
         return []
-//        if let output = try? model.prediction(image: image) {
-//            return computeBoundingBoxes(features: output.grid)
-//        } else {
-//            return []
-//        }
     }
     
     public func computeBoundingBoxes(features: MLMultiArray) -> [Prediction] {

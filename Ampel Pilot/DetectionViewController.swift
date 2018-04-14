@@ -2,8 +2,7 @@
 //  ViewController.swift
 //  Ampel Pilot
 //
-//  Created by Patrick Valenta on 03.10.17.
-//  Copyright © 2017 Patrick Valenta. All rights reserved.
+//  Original source by hollance on 21.06.2017 @https://github.com/hollance/YOLO-CoreML-MPSNNGraph.
 //
 
 import UIKit
@@ -116,7 +115,6 @@ class DetectionViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(didBecomeActive), name: .UIApplicationDidBecomeActive, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(didEnterBackground), name: .UIApplicationDidEnterBackground, object: nil)
         
-        //edgesForExtendedLayout = []
         videoPreview.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         
         viewModel = DetectionViewModel(dataManager: DataManager())
@@ -213,9 +211,6 @@ class DetectionViewController: UIViewController {
         view.addSubview(adminOverlayView)
         view.addSubview(visualFeedbackView)
         
-//        adminOverlayView.addSubview(zoomInButton)
-//        adminOverlayView.addSubview(zoomOutButton)
-        
         adminOverlayView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         adminOverlayView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         adminOverlayView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true
@@ -225,16 +220,6 @@ class DetectionViewController: UIViewController {
         visualFeedbackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         visualFeedbackView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true
         visualFeedbackView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor).isActive = true
-        
-//        zoomOutButton.bottomAnchor.constraint(equalTo: resultsView.topAnchor, constant: -20).isActive = true
-//        zoomOutButton.rightAnchor.constraint(equalTo: adminOverlayView.rightAnchor, constant: -12).isActive = true
-//        zoomOutButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-//        zoomOutButton.widthAnchor.constraint(equalTo: zoomOutButton.heightAnchor, constant: 0).isActive = true
-//
-//        zoomInButton.bottomAnchor.constraint(equalTo: zoomOutButton.topAnchor, constant: -12).isActive = true
-//        zoomInButton.rightAnchor.constraint(equalTo: zoomOutButton.rightAnchor, constant: 0).isActive = true
-//        zoomInButton.heightAnchor.constraint(equalTo: zoomOutButton.heightAnchor, constant: 0).isActive = true
-//        zoomInButton.widthAnchor.constraint(equalTo: zoomOutButton.widthAnchor, constant: 0).isActive = true
     }
     
     func setUpBoundingBoxes() {
