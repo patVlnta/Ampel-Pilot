@@ -29,10 +29,11 @@
 		A35F9F631F837DB800208042 /* VideoCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35F9F621F837DB800208042 /* VideoCapture.swift */; };
 		A35F9F661F837DE000208042 /* YOLO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35F9F651F837DE000208042 /* YOLO.swift */; };
 		A35F9F681F837E0400208042 /* BoundingBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35F9F671F837E0400208042 /* BoundingBox.swift */; };
-		A395C7BC1F8A1A2A00BF0CB0 /* AmpelPilot1_2rg.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = A395C7BB1F8A1A0800BF0CB0 /* AmpelPilot1_2rg.mlmodel */; };
 		A395C7BE1F8A252500BF0CB0 /* FeedbackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A395C7BD1F8A252500BF0CB0 /* FeedbackManager.swift */; };
 		A3ADF3541F9FA67600EA4F8D /* VisualFeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3ADF3531F9FA67600EA4F8D /* VisualFeedbackView.swift */; };
 		A3B07EE31F84DC9000B791B5 /* LightPhaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B07EE21F84DC9000B791B5 /* LightPhaseManager.swift */; };
+		A3B429F01FFA749600404ABE /* AmpelPilot_2812rg.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = A3B429EF1FFA749600404ABE /* AmpelPilot_2812rg.mlmodel */; };
+		A3B429F21FFA77D300404ABE /* AmpelPilot1_2rg.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = A3B429F11FFA77D300404ABE /* AmpelPilot1_2rg.mlmodel */; };
 		A3E8769A1F87B235006BEE74 /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E876991F87B235006BEE74 /* MotionManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -82,10 +83,11 @@
 		A35F9F621F837DB800208042 /* VideoCapture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCapture.swift; sourceTree = "<group>"; };
 		A35F9F651F837DE000208042 /* YOLO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YOLO.swift; sourceTree = "<group>"; };
 		A35F9F671F837E0400208042 /* BoundingBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoundingBox.swift; sourceTree = "<group>"; };
-		A395C7BB1F8A1A0800BF0CB0 /* AmpelPilot1_2rg.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = AmpelPilot1_2rg.mlmodel; sourceTree = "<group>"; };
 		A395C7BD1F8A252500BF0CB0 /* FeedbackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackManager.swift; sourceTree = "<group>"; };
 		A3ADF3531F9FA67600EA4F8D /* VisualFeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualFeedbackView.swift; sourceTree = "<group>"; };
 		A3B07EE21F84DC9000B791B5 /* LightPhaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightPhaseManager.swift; sourceTree = "<group>"; };
+		A3B429EF1FFA749600404ABE /* AmpelPilot_2812rg.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = AmpelPilot_2812rg.mlmodel; sourceTree = "<group>"; };
+		A3B429F11FFA77D300404ABE /* AmpelPilot1_2rg.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = AmpelPilot1_2rg.mlmodel; sourceTree = "<group>"; };
 		A3E876991F87B235006BEE74 /* MotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -216,9 +218,10 @@
 		A35F9F641F837DD500208042 /* yolo */ = {
 			isa = PBXGroup;
 			children = (
+				A3B429EF1FFA749600404ABE /* AmpelPilot_2812rg.mlmodel */,
+				A3B429F11FFA77D300404ABE /* AmpelPilot1_2rg.mlmodel */,
 				A35F9F651F837DE000208042 /* YOLO.swift */,
 				A35F9F671F837E0400208042 /* BoundingBox.swift */,
-				A395C7BB1F8A1A0800BF0CB0 /* AmpelPilot1_2rg.mlmodel */,
 				A3B07EE21F84DC9000B791B5 /* LightPhaseManager.swift */,
 				A395C7BD1F8A252500BF0CB0 /* FeedbackManager.swift */,
 			);
@@ -360,8 +363,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A35F9F5D1F837D3E00208042 /* CVPixelBuffer+Helpers.swift in Sources */,
+				A3B429F01FFA749600404ABE /* AmpelPilot_2812rg.mlmodel in Sources */,
+				A3B429F21FFA77D300404ABE /* AmpelPilot1_2rg.mlmodel in Sources */,
 				A327FA6C1F94B485002A33FE /* DataManager.swift in Sources */,
-				A395C7BC1F8A1A2A00BF0CB0 /* AmpelPilot1_2rg.mlmodel in Sources */,
 				A35F9F2F1F8378DA00208042 /* DetectionViewController.swift in Sources */,
 				A3B07EE31F84DC9000B791B5 /* LightPhaseManager.swift in Sources */,
 				A31AF2141F9B39750067132E /* SelectionViewModel.swift in Sources */,
