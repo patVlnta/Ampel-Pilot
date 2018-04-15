@@ -44,7 +44,7 @@ if let colorMatrixFilter = CIFilter(name: "CIColorMatrix") {
 The dataset has been collected in a joint effort between the Hochschule Augsburg and the University of Tuebingen. Students were able to contribute
 by sending their pictures of pedestrian traffic lights with the LightsCatcher application. Today the datasets consists of around `3600 images` and `4300 annotations`.
 
-* [Dataset repository](https://github.com/patVlnta/Ampel-Pilot/blob/master/images/ap_demo.webm?raw=true)
+* [Dataset repository](https://github.com/patVlnta/Ampel-Pilot-Dataset)
 * [LightsCatcher (Android)](https://play.google.com/store/apps/details?id=com.hs_augsburg_example.lightscatcher&hl=en)
 * [LightsCatcher (iOS)](https://itunes.apple.com/de/app/lightscatcher/id1227218052?mt=8)
 
