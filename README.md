@@ -11,7 +11,7 @@ Pedestrian Traffic Light Detector for visually impaired people, that can be used
 
 ![Demo GIF](https://github.com/patVlnta/Ampel-Pilot/blob/master/images/ap_demo.gif "Demo GIF Animation")
 
-You can watch the full demo video [here](https://github.com/patVlnta/Ampel-Pilot/blob/master/images/ap_demo.webm?raw=true). (Shot with a iPhone 6s)
+You can watch a full demo video [here](https://github.com/patVlnta/Ampel-Pilot/blob/master/images/ap_demo.webm?raw=true) or [here](https://www.youtube.com/watch?v=bfymZX_cEBk). (Shot with a iPhone 6s)
 
 ## Features
 
